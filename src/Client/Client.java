@@ -53,9 +53,9 @@ public class Client {
 
     public void startCall() throws IOException
     {
-        //startData();
-        //sendData("SETNAME:" + myUser.getNickName() + ":END");
-        //sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
+        startData();
+        sendData("SETNAME:" + myUser.getNickName() + ":END");
+        sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
         startVoice();
     }
 

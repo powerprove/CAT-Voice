@@ -34,7 +34,7 @@ public class VoiceSender extends Thread{
         mic.start();
 
         byte[] bytes = new byte[(int) (mic.getFormat().getSampleRate()*0.4)];
-        System.out.println(bytes);
+        //System.out.println(bytes);
         while (running) {
             int count = mic.read(bytes, 0, bytes.length);
             System.out.println(count);

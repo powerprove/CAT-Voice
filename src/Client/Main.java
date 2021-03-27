@@ -10,6 +10,6 @@ public class Main
         Client clientUser1 = new Client(user1, "182.219.127.218");
         System.out.println("CALL");
         clientUser1.startCall();
-        //clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
+        clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
     }
 }

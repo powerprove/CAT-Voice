@@ -42,7 +42,7 @@ public class VoiceReciever extends Thread{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(readCount);
+            //System.out.println(readCount);
             if(readCount>0){
                 speaker.write(data,0,readCount);
             }
