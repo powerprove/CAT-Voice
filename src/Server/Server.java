@@ -13,8 +13,8 @@ public class Server extends Thread
     {
         try
         {
-            serverSocket = new ServerSocket(1004);
-            voiceServerSocket = new ServerSocket(1111);
+            serverSocket = new ServerSocket(8282);
+            voiceServerSocket = new ServerSocket(8383);
         }
         catch (IOException e)
         {
