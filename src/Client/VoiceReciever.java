@@ -17,8 +17,7 @@ public class VoiceReciever extends Thread
     {
         this.in=in;
         start();
-        format = new AudioFormat(8000.F,16,1,true,false);
-        speakerInfo = new DataLine.Info(SourceDataLine.class, format);
+
         SourceDataLine speaker = null;
     }
 
@@ -30,6 +29,8 @@ public class VoiceReciever extends Thread
     public void initVoice()
     {
         try {
+            format = new AudioFormat(8000.F,16,1,true,false);
+            speakerInfo = new DataLine.Info(SourceDataLine.class, format);
             speaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
             speaker.open(format);
         } catch (LineUnavailableException e) {

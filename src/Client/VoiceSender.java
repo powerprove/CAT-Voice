@@ -22,7 +22,6 @@ public class VoiceSender extends Thread
     VoiceSender(DataOutputStream out)
     {
         this.out=out;
-        format = new AudioFormat(8000.F, 16, 1, true, false);
         running = true;
         mic = null;
         start();
@@ -31,6 +30,7 @@ public class VoiceSender extends Thread
     public void initVoice()
     {
         try {
+            format = new AudioFormat(8000.F, 16, 1, true, false);
             mic = AudioSystem.getTargetDataLine(format);
             mic.open(format);
         } catch (LineUnavailableException e) {
