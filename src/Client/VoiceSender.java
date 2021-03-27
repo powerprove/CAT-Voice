@@ -29,8 +29,8 @@ public class VoiceSender extends Thread
 
     public void initVoice()
     {
+        format = new AudioFormat(8000.F, 16, 1, true, false);
         try {
-            format = new AudioFormat(8000.F, 16, 1, true, false);
             mic = AudioSystem.getTargetDataLine(format);
             mic.open(format);
         } catch (LineUnavailableException e) {
@@ -46,7 +46,7 @@ public class VoiceSender extends Thread
         mic.start();
 
         byte[] bytes = new byte[(int) (mic.getFormat().getSampleRate()*0.4)];
-        //System.out.println(bytes);
+        System.out.println(bytes);
 
         while (running)
         {
