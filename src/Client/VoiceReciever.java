@@ -39,7 +39,7 @@ public class VoiceReciever extends Thread
     @Override
     public void run()
     {
-
+        initVoice();
         speaker.start();
         byte[] data = new byte[8000];
 
