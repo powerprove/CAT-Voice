@@ -19,9 +19,10 @@ public class Client {
     private VoiceReciever voiceReciever;
     private DataReciever dataReciever;
 
-    public Client(User myUser, String ip) throws UnknownHostException, IOException
+    public Client(User myUser, String ip) throws IOException
     {
         this.myUser = myUser;
+        this.anotherUser = new User("", "");
         this.ip = ip;
         setSocketCommand();
         setDataStream();
@@ -53,8 +54,8 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        sendData("USERNICKNAME:" + myUser.getNickName() + ":END");
-        sendData("USERSETSTATUS:" + myUser.getStatusMessage() + ":END");
+        sendData("SETNAME:" + myUser.getNickName() + ":END");
+        sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
         startVoice();
     }
 
@@ -74,5 +75,47 @@ public class Client {
         dataOut.writeUTF(data);
         dataOut.flush();
     }
+
+
+    public String getMyUserName()
+    {
+        return myUser.getNickName();
+    }
+
+    public String getMyUserStatus()
+    {
+        return myUser.getStatusMessage();
+    }
+
+    public void setMyUserStatus(String Status)
+    {
+        myUser.setStatusMessage(Status);
+        try {
+            sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getAnotherUserName()
+    {
+        return anotherUser.getNickName();
+    }
+
+    public String getAnotherUserStatus()
+    {
+        return anotherUser.getStatusMessage();
+    }
+
+    public void setAnotherUserName(String name)
+    {
+        anotherUser.setNickName(name);
+    }
+
+    public void setAnotherUserStatus(String status)
+    {
+        anotherUser.setStatusMessage(status);
+    }
+
 
 }

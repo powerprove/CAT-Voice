@@ -25,4 +25,9 @@ public class User
     {
         this.statusMessage = statusMessage;
     }
+
+    public void setNickName(String nickName)
+    {
+        this.nickName = nickName;
+    }
 }
