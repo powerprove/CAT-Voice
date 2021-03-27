@@ -7,7 +7,7 @@ public class Main
 {
     public static void main(String[] args) throws IOException {
         User user1 = new User("powerprove", "very hard...");
-        Client clientUser1 = new Client(user1, "203.229.206.26");
+        Client clientUser1 = new Client(user1, "localhost");
         clientUser1.setSocketCommand();
     }
 }

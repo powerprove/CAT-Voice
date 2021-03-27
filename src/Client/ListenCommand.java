@@ -36,16 +36,13 @@ public class ListenCommand extends SocketCommand
     {
         System.out.println("SocketCommand => Listen");
         System.out.println("상대를 기다리는 중입니다.");
-        Socket client = null;
-        Socket voice = null;
 
-        client = SocketAccept(serverSocket);
+        clientSocket = SocketAccept(serverSocket);
 
         System.out.println("Client accepted");
         System.out.println("wait for voice");
 
-        voice = SocketAccept(voiceServerSocket);
-
+        clientVoiceSocket = SocketAccept(voiceServerSocket);
         System.out.println("voice accepted");
 
     }

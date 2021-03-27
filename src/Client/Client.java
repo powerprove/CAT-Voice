@@ -14,16 +14,18 @@ public class Client {
     private SocketCommand socketCommand;
     private User myUser;
     private String ip;
-    private DataOutputStream sendVoice, out;
-    private DataInputStream recvVoice, in;
+    private DataOutputStream voiceOut, out;
+    private DataInputStream voiceIn, in;
 
     public Client(User myUser, String ip) throws UnknownHostException, IOException {
         this.myUser = myUser;
         this.ip = ip;
         setSocketCommand();
+        setDataStream();
     }
 
-    public void setSocketCommand() throws IOException {
+    public void setSocketCommand() throws IOException
+    {
 
         if ( ip.equals("0.0.0.0") || ip.equals("localhost"))
         {
@@ -35,6 +37,14 @@ public class Client {
         }
 
         socketCommand.execute(ip);
+    }
+
+    public void setDataStream() throws IOException
+    {
+        in = new DataInputStream(socketCommand.clientSocket.getInputStream());
+        out = new DataOutputStream(socketCommand.clientSocket.getOutputStream());
+        voiceOut = new DataOutputStream(socketCommand.clientVoiceSocket.getOutputStream());
+        voiceIn = new DataInputStream(socketCommand.clientVoiceSocket.getInputStream());
     }
 
 }
