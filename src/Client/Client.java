@@ -14,12 +14,14 @@ public class Client {
     private SocketCommand socketCommand;
     private User myUser;
     private String ip;
-    private DataOutputStream voiceOut, out;
-    private DataInputStream voiceIn, in;
-    private VoiceSender sender;
-    private VoiceReciever reciever;
+    private DataOutputStream voiceOut, dataOut;
+    private DataInputStream voiceIn, dataIn;
+    private VoiceSender voiceSender;
+    private VoiceReciever voiceReciever;
+    private DataReciever dataReciever;
 
-    public Client(User myUser, String ip) throws UnknownHostException, IOException {
+    public Client(User myUser, String ip) throws UnknownHostException, IOException
+    {
         this.myUser = myUser;
         this.ip = ip;
         setSocketCommand();
@@ -43,16 +45,35 @@ public class Client {
 
     public void setDataStream() throws IOException
     {
-        in = new DataInputStream(socketCommand.clientSocket.getInputStream());
-        out = new DataOutputStream(socketCommand.clientSocket.getOutputStream());
+        dataIn = new DataInputStream(socketCommand.clientSocket.getInputStream());
+        dataOut = new DataOutputStream(socketCommand.clientSocket.getOutputStream());
         voiceOut = new DataOutputStream(socketCommand.clientVoiceSocket.getOutputStream());
         voiceIn = new DataInputStream(socketCommand.clientVoiceSocket.getInputStream());
     }
 
-    public void callVoice()
+    public void startCall() throws IOException
     {
-        sender = new VoiceSender(voiceOut);
-        reciever = new VoiceReciever(voiceIn);
+        startData();
+        sendData(myUser.getNickName());
+        sendData(myUser.getStatusMessage());
+        startVoice();
+    }
+
+    public void startVoice()
+    {
+        voiceSender = new VoiceSender(voiceOut);
+        voiceReciever = new VoiceReciever(voiceIn);
+    }
+
+    public void startData()
+    {
+        dataReciever = new DataReciever(dataIn);
+    }
+
+    public void sendData(String data) throws IOException
+    {
+        dataOut.writeUTF(data);
+        dataOut.flush();
     }
 
 }
