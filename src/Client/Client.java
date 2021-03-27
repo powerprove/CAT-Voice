@@ -10,9 +10,8 @@ import java.net.UnknownHostException;
 
 
 public class Client {
-    private Socket ServerSocket, VoiceSocket;
     private SocketCommand socketCommand;
-    private User myUser;
+    private User myUser, anotherUser;
     private String ip;
     private DataOutputStream voiceOut, dataOut;
     private DataInputStream voiceIn, dataIn;
@@ -54,8 +53,8 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        sendData(myUser.getNickName());
-        sendData(myUser.getStatusMessage());
+        sendData("USERNICKNAME:" + myUser.getNickName() + ":END");
+        sendData("USERSETSTATUS:" + myUser.getStatusMessage() + ":END");
         startVoice();
     }
 
@@ -67,7 +66,7 @@ public class Client {
 
     public void startData()
     {
-        dataReciever = new DataReciever(dataIn);
+        dataReciever = new DataReciever(dataIn, this);
     }
 
     public void sendData(String data) throws IOException

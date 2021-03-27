@@ -7,11 +7,13 @@ public class DataReciever extends Thread
 {
     private DataInputStream in;
     private boolean running;
+    private ClientCommand clientCommand;
 
-    DataReciever(DataInputStream in)
+    DataReciever(DataInputStream in, Client client)
     {
         this.in = in;
         running = true;
+        clientCommand = new ClientCommand(client);
         start();
     }
 
@@ -28,6 +30,7 @@ public class DataReciever extends Thread
             {
                 String Data = in.readUTF();
                 System.out.println(Data);
+                clientCommand.Command(Data);
             }
             catch (IOException e)
             {
