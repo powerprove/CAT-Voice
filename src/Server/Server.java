@@ -18,7 +18,42 @@ public class Server extends Thread
         }
         catch (IOException e)
         {
-            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
+
+    public Socket SocketAccept(ServerSocket serverSocket)
+    {
+        Socket client = null;
+        try
+        {
+            client = serverSocket.accept();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return client;
+    }
+
+
+    public void run()
+    {
+        while (true)
+        {
+            System.out.println("상대를 기다리는 중입니다.");
+            Socket client = null;
+            Socket voice = null;
+
+            client = SocketAccept(serverSocket);
+
+            System.out.println("Client accepted");
+            System.out.println("wait for voice");
+
+            voice = SocketAccept(voiceServerSocket);
+
+            System.out.println("voice accepted");
+
         }
     }
 }
