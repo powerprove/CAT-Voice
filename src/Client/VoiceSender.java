@@ -11,8 +11,6 @@ public class VoiceSender extends Thread
 {
     DataOutputStream out;
     boolean running;
-    AudioFormat format;
-    TargetDataLine mic;
 
     public void setRunning(boolean running)
     {
@@ -23,25 +21,23 @@ public class VoiceSender extends Thread
     {
         this.out=out;
         running = true;
-        mic = null;
         start();
     }
 
-    public void initVoice()
+
+    @Override
+    public void run()
     {
-        format = new AudioFormat(8000.F, 16, 1, true, false);
+        AudioFormat format = new AudioFormat(8000.F, 16, 1, true, false);
+        TargetDataLine mic = null;
+
         try {
             mic = AudioSystem.getTargetDataLine(format);
             mic.open(format);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-    }
 
-    @Override
-    public void run()
-    {
-        initVoice();
         System.out.println("Start recording");
         mic.start();
 

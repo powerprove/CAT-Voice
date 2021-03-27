@@ -9,16 +9,12 @@ public class VoiceReciever extends Thread
 {
     DataInputStream in;
     boolean running;
-    AudioFormat format;
-    DataLine.Info speakerInfo;
-    SourceDataLine speaker;
 
     VoiceReciever (DataInputStream in)
     {
         this.in=in;
         start();
 
-        SourceDataLine speaker = null;
     }
 
     public void setRunning (boolean running)
@@ -26,21 +22,21 @@ public class VoiceReciever extends Thread
         this.running=running;
     }
 
-    public void initVoice()
+
+    @Override
+    public void run()
     {
-        format = new AudioFormat(8000.F,16,1,true,false);
-        speakerInfo = new DataLine.Info(SourceDataLine.class, format);
+        AudioFormat format = new AudioFormat(8000.F,16,1,true,false);
+        DataLine.Info speakerInfo = new DataLine.Info(SourceDataLine.class, format);
+
+        SourceDataLine speaker = null;
         try {
             speaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
             speaker.open(format);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-    }
-    @Override
-    public void run()
-    {
-        initVoice();
+
         speaker.start();
         byte[] data = new byte[8000];
 
