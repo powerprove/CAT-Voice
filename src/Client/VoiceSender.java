@@ -4,14 +4,15 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class VoiceSender extends Thread
 {
-    DataOutputStream out = null;
-    boolean running =true;
+    DataOutputStream out;
+    boolean running;
+    AudioFormat format;
+    TargetDataLine mic;
 
     public void setRunning(boolean running)
     {
@@ -21,22 +22,26 @@ public class VoiceSender extends Thread
     VoiceSender(DataOutputStream out)
     {
         this.out=out;
+        format = new AudioFormat(8000.F, 16, 1, true, false);
+        running = true;
+        mic = null;
         start();
     }
 
-    @Override
-    public void run()
+    public void initVoice()
     {
-        AudioFormat format = new AudioFormat(8000.F, 16, 1, true, false);
-        TargetDataLine mic = null;
-        
         try {
             mic = AudioSystem.getTargetDataLine(format);
             mic.open(format);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void run()
+    {
+        initVoice();
         System.out.println("Start recording");
         mic.start();
 
@@ -46,9 +51,8 @@ public class VoiceSender extends Thread
         while (running)
         {
             int count = mic.read(bytes, 0, bytes.length);
-            System.out.println(count);
 
-            if(count>0)
+            if (count>0)
             {
                 try {
                     out.write(bytes,0,count);

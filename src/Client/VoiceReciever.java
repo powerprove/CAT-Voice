@@ -8,35 +8,39 @@ import java.io.InputStream;
 public class VoiceReciever extends Thread
 {
     DataInputStream in;
-    boolean running = true;
+    boolean running;
+    AudioFormat format;
+    DataLine.Info speakerInfo;
+    SourceDataLine speaker;
 
     VoiceReciever (DataInputStream in)
     {
         this.in=in;
         start();
+        format = new AudioFormat(8000.F,16,1,true,false);
+        speakerInfo = new DataLine.Info(SourceDataLine.class, format);
+        SourceDataLine speaker = null;
     }
 
     public void setRunning (boolean running)
     {
         this.running=running;
     }
-    
-    @Override
-    public void run()
-    {
-        AudioFormat format = new AudioFormat(8000.F,16,1,true,false);
-        DataLine.Info speakerInfo = new DataLine.Info(SourceDataLine.class, format);
 
-        SourceDataLine speaker = null;
+    public void initVoice()
+    {
         try {
             speaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
             speaker.open(format);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void run()
+    {
 
         speaker.start();
-
         byte[] data = new byte[8000];
 
         while (running){
@@ -54,8 +58,6 @@ public class VoiceReciever extends Thread
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            System.out.println(readCount);
 
             if(readCount>0){
                 speaker.write(data,0,readCount);
