@@ -9,5 +9,6 @@ public class Main
         User user1 = new User("powerprove", "very hard...");
         Client clientUser1 = new Client(user1, "localhost");
         clientUser1.setSocketCommand();
+        clientUser1.callVoice();
     }
 }

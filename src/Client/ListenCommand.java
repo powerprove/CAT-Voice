@@ -11,7 +11,7 @@ public class ListenCommand extends SocketCommand
     {
         try {
             serverSocket = new ServerSocket(8282);
-            voiceServerSocket = new ServerSocket(833);
+            voiceServerSocket = new ServerSocket(8283);
         } catch (IOException e) {
             e.printStackTrace();
         }

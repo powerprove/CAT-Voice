@@ -16,6 +16,8 @@ public class Client {
     private String ip;
     private DataOutputStream voiceOut, out;
     private DataInputStream voiceIn, in;
+    private VoiceSender sender;
+    private VoiceReciever reciever;
 
     public Client(User myUser, String ip) throws UnknownHostException, IOException {
         this.myUser = myUser;
@@ -45,6 +47,12 @@ public class Client {
         out = new DataOutputStream(socketCommand.clientSocket.getOutputStream());
         voiceOut = new DataOutputStream(socketCommand.clientVoiceSocket.getOutputStream());
         voiceIn = new DataInputStream(socketCommand.clientVoiceSocket.getInputStream());
+    }
+
+    public void callVoice()
+    {
+        sender = new VoiceSender(voiceOut);
+        reciever = new VoiceReciever(voiceIn);
     }
 
 }
