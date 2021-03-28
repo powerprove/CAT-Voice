@@ -217,10 +217,9 @@ public class CallFrame extends javax.swing.JFrame {
                clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
                clientUser1.startCall();
                clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
-               clientUser1.callCheck();
-               
+               clientUser1.callCheck();  
                clientUser1.setCallFrame(this);
-               setStatusLabel(clientUser1.getAnotherUserStatus());
+               setStatusLabel(clientUser1.getMyUserStatus());
                System.out.println(clientUser1.getAnotherUserName());
                System.out.println(clientUser1.getIP());
                System.out.println(clientUser1.getMyUserStatus());
