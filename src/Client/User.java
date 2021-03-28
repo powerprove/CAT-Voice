@@ -21,13 +21,13 @@ public class User
         return statusMessage;
     }
 
+    public void setNickname(String nickName)
+    {
+        this.nickName = nickName;
+    }
+    
     public void setStatusMessage(String statusMessage)
     {
         this.statusMessage = statusMessage;
-    }
-
-    public void setNickName(String nickName)
-    {
-        this.nickName = nickName;
     }
 }

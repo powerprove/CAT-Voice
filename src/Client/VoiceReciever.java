@@ -5,35 +5,41 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class VoiceReciever extends Thread{
+public class VoiceReciever extends Thread
+{
     DataInputStream in;
-    boolean running =true;
-    VoiceReciever(DataInputStream in){
+    boolean running = true;
+
+    VoiceReciever (DataInputStream in)
+    {
         this.in=in;
         start();
     }
-    public void setRunning(boolean running){
+
+    public void setRunning (boolean running)
+    {
         this.running=running;
     }
+    
     @Override
-    public void run() {
-
+    public void run()
+    {
         AudioFormat format = new AudioFormat(8000.F,16,1,true,false);
         DataLine.Info speakerInfo = new DataLine.Info(SourceDataLine.class, format);
 
         SourceDataLine speaker = null;
-
         try {
             speaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
             speaker.open(format);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+
         speaker.start();
 
         byte[] data = new byte[8000];
-        while (running){
 
+        while (running){
             try {
                 if(in.available() <= 0)
                     continue;
@@ -49,9 +55,12 @@ public class VoiceReciever extends Thread{
                 e.printStackTrace();
             }
 
+            System.out.println(readCount);
+
             if(readCount>0){
                 speaker.write(data,0,readCount);
             }
+
         }
 
 

@@ -65,14 +65,14 @@ public class Client {
         voiceReciever = new VoiceReciever(voiceIn);
     }
 
-    public int CallCheck()
+    public int callCheck()
     {
        while (getAnotherUserName().equals(""))
        {
        }
        return 1;
     }
-
+    
     public void startData()
     {
         dataReciever = new DataReciever(dataIn, this);
@@ -83,6 +83,7 @@ public class Client {
         dataOut.writeUTF(data);
         dataOut.flush();
     }
+
 
     public String getMyUserName()
     {
@@ -116,12 +117,16 @@ public class Client {
 
     public void setAnotherUserName(String name)
     {
-        anotherUser.setNickName(name);
+        anotherUser.setNickname(name);
     }
 
     public void setAnotherUserStatus(String status)
     {
         anotherUser.setStatusMessage(status);
+    }
+    
+    public String getIP(){
+        return ip;
     }
 
 
