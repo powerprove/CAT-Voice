@@ -65,6 +65,14 @@ public class Client {
         voiceReciever = new VoiceReciever(voiceIn);
     }
 
+    public int CallCheck()
+    {
+       while (getAnotherUserName().equals(""))
+       {
+       }
+       return 1;
+    }
+
     public void startData()
     {
         dataReciever = new DataReciever(dataIn, this);
@@ -75,7 +83,6 @@ public class Client {
         dataOut.writeUTF(data);
         dataOut.flush();
     }
-
 
     public String getMyUserName()
     {

@@ -11,6 +11,8 @@ public class ClientCommand
 
     public void CommandArgv2(String[] command)
     {
+        System.out.println(command[0]);
+        System.out.println(command[1]);
         if (command[0].equals("SETNAME"))
         {
             client.setAnotherUserName(command[1]);
