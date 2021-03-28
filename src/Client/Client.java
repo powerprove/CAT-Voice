@@ -18,14 +18,29 @@ public class Client {
     private VoiceSender voiceSender;
     private VoiceReciever voiceReciever;
     private DataReciever dataReciever;
+    // gui
+    private CallFrame callFrame;
 
     public Client(User myUser, String ip) throws IOException
     {
         this.myUser = myUser;
         this.anotherUser = new User("", "");
         this.ip = ip;
+        this.callFrame = null;
         setSocketCommand();
         setDataStream();
+    }
+
+    public void setCallFrame(CallFrame callFrame)
+    {
+        this.callFrame = callFrame;
+    }
+
+    public boolean isCallFrame()
+    {
+        if (callFrame == null)
+            return false;
+        return true;
     }
 
     public void setSocketCommand() throws IOException
@@ -123,6 +138,9 @@ public class Client {
     public void setAnotherUserStatus(String status)
     {
         anotherUser.setStatusMessage(status);
+        if (isCallFrame()) {
+            callFrame.setStatusLabel(status);
+        }
     }
     
     public String getIP(){
