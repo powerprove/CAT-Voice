@@ -212,14 +212,13 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
             try{
-               Client clientUser1;
                User user2 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
                clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
                clientUser1.startCall();
                clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
                clientUser1.callCheck();  
                clientUser1.setCallFrame(this);
-               setStatusLabel(clientUser1.getMyUserStatus());
+               //setStatusLabel(clientUser1.getMyUserStatus());
                System.out.println(clientUser1.getAnotherUserName());
                System.out.println(clientUser1.getIP());
                System.out.println(clientUser1.getMyUserStatus());
@@ -237,7 +236,8 @@ public class CallFrame extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         String resultStr = null;
         resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
-        setStatusLabel(resultStr);
+        clientUser1.setMyUserStatus(resultStr);
+        //setStatusLabel(resultStr);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     public void setStatusLabel(String StatusLabel){
@@ -287,6 +287,7 @@ public class CallFrame extends javax.swing.JFrame {
         });
     }
 
+    private Client clientUser1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
