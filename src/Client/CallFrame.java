@@ -218,8 +218,9 @@ public class CallFrame extends javax.swing.JFrame {
                clientUser1.startCall();
                clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
                clientUser1.callCheck();
+               
                clientUser1.setCallFrame(this);
-               System.out.println(clientUser1.getMyUserName());
+               setStatusLabel(clientUser1.getAnotherUserStatus());
                System.out.println(clientUser1.getAnotherUserName());
                System.out.println(clientUser1.getIP());
                System.out.println(clientUser1.getMyUserStatus());
@@ -242,6 +243,10 @@ public class CallFrame extends javax.swing.JFrame {
 
     public void setStatusLabel(String StatusLabel){
         jLabel14.setText(StatusLabel);
+    }
+    
+    public void setName(String name){
+        jLabel9.setText(name);
     }
     
     
