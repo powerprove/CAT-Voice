@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Client.LoginFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,7 +37,6 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -64,11 +64,12 @@ public class CallFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
 
-        jLabel2.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel2.setText("Voice Chat");
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/변환.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/리스트.png"))); // NOI18N
 
@@ -120,8 +121,6 @@ public class CallFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addGap(81, 81, 81)
-                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -135,15 +134,9 @@ public class CallFrame extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)))
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
@@ -225,26 +218,36 @@ public class CallFrame extends javax.swing.JFrame {
                clientUser1.startCall();
                clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
                clientUser1.callCheck();
+               clientUser1.setCallFrame(this);
                System.out.println(clientUser1.getMyUserName());
                System.out.println(clientUser1.getAnotherUserName());
                System.out.println(clientUser1.getIP());
                System.out.println(clientUser1.getMyUserStatus());
                System.out.println(clientUser1.getAnotherUserStatus());
-
             }
             catch (IOException ex) {
                     Logger.getLogger(CallFrame.class.getName()).log(Level.SEVERE, null, ex);
             }// TODO add your handling code here:
-
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel17MouseClicked
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        String resultStr = null;
+        resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
+        setStatusLabel(resultStr);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    public void setStatusLabel(String StatusLabel){
+        jLabel14.setText(StatusLabel);
+    }
+    
+    
     /**
      * @param args the command line arguments
-     */
+     */ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -289,7 +292,6 @@ public class CallFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
