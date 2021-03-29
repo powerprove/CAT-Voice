@@ -85,6 +85,8 @@ public class Client {
        while (getAnotherUserName().equals(""))
        {
        }
+       System.out.println(getAnotherUserName());
+       System.out.println(getAnotherUserStatus());
        return 1;
     }
     

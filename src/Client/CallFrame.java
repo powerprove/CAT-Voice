@@ -75,12 +75,12 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/리스트.png"))); // NOI18N
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("언제 자게?");
+        jLabel14.setText("전화버튼을 눌러주세요.");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/큰프로필.png"))); // NOI18N
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("User");
+        jLabel9.setText("상대방을 기다리는 중입니다...");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/전화.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,14 +213,18 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
             try{
-               if ( clientUser1 == null ) {
+               if ( clientUser1 == null )
+               {
                    User user2 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
                    clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
                    clientUser1.startCall();
                    clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
                    clientUser1.callCheck();
                    clientUser1.setCallFrame(this);
+
                    setStatusLabel(clientUser1.getAnotherUserStatus());
+                   setName(clientUser1.getAnotherUserName());
+
                    System.out.println(clientUser1.getAnotherUserName());
                    System.out.println(clientUser1.getIP());
                    System.out.println(clientUser1.getMyUserStatus());
