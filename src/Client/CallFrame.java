@@ -22,6 +22,7 @@ public class CallFrame extends javax.swing.JFrame {
      */
     public CallFrame() {
         initComponents();
+        clientUser1 = null;
     }
 
     /**
@@ -212,17 +213,19 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
             try{
-               User user2 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
-               clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
-               clientUser1.startCall();
-               clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
-               clientUser1.callCheck();  
-               clientUser1.setCallFrame(this);
-               //setStatusLabel(clientUser1.getMyUserStatus());
-               System.out.println(clientUser1.getAnotherUserName());
-               System.out.println(clientUser1.getIP());
-               System.out.println(clientUser1.getMyUserStatus());
-               System.out.println(clientUser1.getAnotherUserStatus());
+               if ( clientUser1 == null ) {
+                   User user2 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
+                   clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
+                   clientUser1.startCall();
+                   clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
+                   clientUser1.callCheck();
+                   clientUser1.setCallFrame(this);
+                   setStatusLabel(clientUser1.getAnotherUserStatus());
+                   System.out.println(clientUser1.getAnotherUserName());
+                   System.out.println(clientUser1.getIP());
+                   System.out.println(clientUser1.getMyUserStatus());
+                   System.out.println(clientUser1.getAnotherUserStatus());
+               }
             }
             catch (IOException ex) {
                     Logger.getLogger(CallFrame.class.getName()).log(Level.SEVERE, null, ex);
