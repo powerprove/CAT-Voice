@@ -25,9 +25,10 @@ public class Room
 
     public void sendVoice(byte[] Data, int roomnum, int count)
     {
-        System.out.println("[ROOM] sendVoice");
+        //System.out.println("[ROOM] sendVoice");
         for (Member member : room)
         {
+            //System.out.println(count);
             if (member.getRoomId() != roomnum)
                 member.sendVoice(Data, count);
         }

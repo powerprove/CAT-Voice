@@ -30,6 +30,7 @@ public class Member
 
     void setRoomId(int id)
     {
+        System.out.println("[ROOM] => ROOMID " + id);
         roomId = id;
     }
 
@@ -107,7 +108,7 @@ public class Member
     {
         try {
             voiceOut.write(data,0,count);
-            voiceOut.flush();
+            //voiceOut.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
