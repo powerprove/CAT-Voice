@@ -15,6 +15,7 @@ public class Member
     private DataOutputStream dataOut;
     private DataOutputStream voiceOut;
     private Reciever reciever;
+    private VoiceReciever vreciever;
 
     Member(Socket member, Socket vmember) throws IOException
     {
@@ -59,6 +60,7 @@ public class Member
     public void Execute()
     {
         reciever = new Reciever(dataIn, this);
+        vreciever = new VoiceReciever(voiceIn, this);
     }
 
     public void recvData(String data)
