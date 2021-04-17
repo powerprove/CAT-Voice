@@ -17,6 +17,8 @@ public class Member
     private Reciever reciever;
     private VoiceReciever vreciever;
 
+    private int roomId;
+
     Member(Socket member, Socket vmember) throws IOException
     {
         this.member = member;
@@ -24,6 +26,16 @@ public class Member
         room = null;
         SetStream();
         Execute();
+    }
+
+    void setRoomId(int id)
+    {
+        roomId = id;
+    }
+
+    int getRoomId()
+    {
+        return roomId;
     }
 
     void setRoom(Room room)
@@ -59,13 +71,19 @@ public class Member
 
     public void Execute()
     {
+        if (dataIn == null)
+            System.out.println("DataIn is null");
+        if (voiceIn == null)
+            System.out.println("DataIn is null");
+
         reciever = new Reciever(dataIn, this);
         vreciever = new VoiceReciever(voiceIn, this);
     }
 
     public void recvData(String data)
     {
-        room.sendData(data, this);
+        System.out.println("recvData");
+        room.sendData(data, roomId);
     }
 
     //Send Data to Client
@@ -82,7 +100,7 @@ public class Member
 
     public void recvVoice(byte[] data, int count)
     {
-        room.sendVoice(data, this, count);
+        room.sendVoice(data, roomId, count);
     }
 
     public void sendVoice(byte[] data, int count)

@@ -46,7 +46,7 @@ public class VoiceReciever extends Thread
                 e.printStackTrace();
             }
 
-            //System.out.println(readCount);
+            System.out.println(readCount);
 
             if(readCount>0){
                 member.recvVoice(data, readCount);

@@ -8,31 +8,28 @@ public class Room
 
     public void addMember(Member member)
     {
-        room.add(member);
         member.setRoom(this);
+        member.setRoomId(room.size());
+        room.add(member);
     }
 
-    public void sendData(String Data, Member my)
+    public void sendData(String Data, int roomnum)
     {
         System.out.println("[ROOM] sendData => " + Data);
         for (Member member : room)
         {
-            if (member != my)
-            {
+            if (member.getRoomId() != roomnum)
                 member.sendData(Data);
-            }
         }
     }
 
-    public void sendVoice(byte[] Data, Member my, int count)
+    public void sendVoice(byte[] Data, int roomnum, int count)
     {
         System.out.println("[ROOM] sendVoice");
         for (Member member : room)
         {
-            if (member != my)
-            {
+            if (member.getRoomId() != roomnum)
                 member.sendVoice(Data, count);
-            }
         }
     }
 

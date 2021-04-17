@@ -12,11 +12,11 @@ public class Reciever extends Thread
     private boolean running;
     private Member member;
 
-    Reciever(DataInputStream in, Member recv)
+    Reciever(DataInputStream in, Member member)
     {
         this.in = in;
         running = true;
-        member = recv;
+        this.member = member;
         start();
     }
 
@@ -31,7 +31,9 @@ public class Reciever extends Thread
         {
             try
             {
+                //System.out.println("RECV");
                 String Data = in.readUTF();
+                //System.out.print("Data");
                 member.recvData(Data);
             }
             catch (IOException e)
