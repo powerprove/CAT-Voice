@@ -56,15 +56,18 @@ public class Server extends Thread
     @Override
     public synchronized void run()
     {
-        Socket member = AcceptSocket(serverSocket);
-        System.out.println("[SERVER] INPUT => " + member.getInetAddress());
-        Socket vmember = AcceptSocket(vserverSocket);
-        System.out.println("[SERVER] INPUT => " + vmember.getInetAddress());
+        while (true)
+        {
+            Socket member = AcceptSocket(serverSocket);
+            System.out.println("[SERVER] INPUT => " + member.getInetAddress());
+            Socket vmember = AcceptSocket(vserverSocket);
+            System.out.println("[SERVER] INPUT => " + vmember.getInetAddress());
 
-        try {
-            addMember(member, vmember);
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                addMember(member, vmember);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
