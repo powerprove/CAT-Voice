@@ -58,6 +58,7 @@ public class Client {
         startData();
         sendData("SETNAME:" + myUser.getNickName() + ":END");
         sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
+        sendData("COMMANDSTART:"+"INROOM:"+myUser.getNickName()+":"+myUser.getStatusMessage()+":END");
         startVoice();
     }
 
