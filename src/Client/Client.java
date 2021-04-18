@@ -41,16 +41,7 @@ public class Client {
 
     public void setSocketCommand() throws IOException
     {
-
-        if ( ip.equals("0.0.0.0") || ip.equals("localhost"))
-        {
-            socketCommand = new ListenCommand();
-        }
-        else
-        {
-            socketCommand = new ConnectCommand();
-        }
-
+        socketCommand = new ConnectCommand();
         socketCommand.execute(ip);
     }
 
