@@ -19,6 +19,10 @@ public class ClientCommand
         else if("INROOMUSER".equals(command[1])){ // another User info Save
             int idx = Integer.parseInt(command[4]);
             myUser.roomUserName[idx] = command[2]; // nickName
+            myUser.roomUserMSG[idx] = command[3]; // state message
+        }
+        else if("SETMYSTATUS".equals(command[1])) { // change statemessage
+            int idx = Integer.parseInt(command[2]);
             myUser.roomUserMSG[idx] = command[3];
         }
 

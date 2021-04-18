@@ -102,7 +102,8 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
+            //COMMANDSTART:SETMYSTATUS:룸ID:상메:END
+            sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
             e.printStackTrace();
         }
