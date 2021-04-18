@@ -59,7 +59,8 @@ public class VoiceSender extends Thread
                 try {
                     chk = true;
                     out.write(bytes,0,count); //
-                    out.write(usrInfo.getName().getBytes(StandardCharsets.UTF_8),0,usrInfo.getName().length());
+                    System.out.println(clientCommand.client.getMyUserName());
+
                     chk = false; // add
                 } catch (IOException e) {
                     e.printStackTrace();
