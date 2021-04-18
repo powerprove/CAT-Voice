@@ -56,8 +56,6 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        sendData("SETNAME:" + myUser.getNickName() + ":END");
-        sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
         sendData("COMMANDSTART:"+"INROOM:"+myUser.getNickName()+":"+myUser.getStatusMessage()+":END");
         startVoice();
     }
@@ -80,7 +78,7 @@ public class Client {
     
     public void startData()
     {
-        dataReciever = new DataReciever(dataIn, this);
+        dataReciever = new DataReciever(dataIn, this,myUser);
     }
 
     public void sendData(String data) throws IOException
@@ -94,7 +92,7 @@ public class Client {
     {
         return myUser.getNickName();
     }
-
+    public int getMyUserRoomid(){ return myUser.getRoomid(); }
     public String getMyUserStatus()
     {
         return myUser.getStatusMessage();

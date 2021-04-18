@@ -11,28 +11,27 @@ public class ClientCommand
 
     }
 
-    public void CommandArgv2(String[] command)
+    public void CommandArgv2(String[] command,User myUser)
     {
-        if (command[0].equals("SETNAME"))
-        {
-            client.setAnotherUserName(command[1]);
+       if("USERROOMID".equals(command[1])){
+            myUser.roomid = Integer.parseInt(command[2]);
         }
-        else if (command[0].equals("SETSTATUS"))
-        {
-            client.setAnotherUserStatus(command[1]);
+        else if("INROOMUSER".equals(command[1])){ // another User info Save
+            int idx = Integer.parseInt(command[4]);
+            myUser.roomUserName[idx] = command[2]; // nickName
+            myUser.roomUserMSG[idx] = command[3];
         }
-
 
     }
 
-    public synchronized void Command(String data)
+    public synchronized void Command(String data,User myUser)
     {
         String[] command = data.split(":");
         //System.out.println(command);
 
         if (command.length == 3)
         {
-            CommandArgv2(command);
+            CommandArgv2(command,myUser);
         }
 
     }

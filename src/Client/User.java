@@ -2,6 +2,9 @@ package Client;
 
 public class User
 {
+    String[] roomUserName = new String[101];
+    String[] roomUserMSG = new String[101];
+    int roomid;
     private String nickName;
     private String statusMessage;
     User(String nickName,String statusMessage)
@@ -20,6 +23,8 @@ public class User
         return statusMessage;
     }
 
+    public int getRoomid(){return roomid;}
+
     public void setNickname(String nickName)
     {
         this.nickName = nickName;
@@ -30,5 +35,4 @@ public class User
         this.statusMessage = statusMessage;
     }
 
-    public String getUserState(){return "COMMANDSTART:INROOM:닉네임:상태메시지:END";}
 }
