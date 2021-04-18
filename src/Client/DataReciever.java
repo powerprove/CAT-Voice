@@ -14,6 +14,7 @@ public class DataReciever extends Thread
         this.in = in;
         running = true;
         clientCommand = new ClientCommand(client);
+
         start();
     }
 

@@ -4,9 +4,10 @@ public class User
 {
     private String nickName;
     private String statusMessage;
-
+    UserInfo usrInfo = new UserInfo();
     User(String nickName,String statusMessage)
     {
+        usrInfo.nickName= nickName;
         this.nickName = nickName;
         setStatusMessage(statusMessage);
     }

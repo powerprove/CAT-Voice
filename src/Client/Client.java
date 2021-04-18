@@ -3,10 +3,6 @@ package Client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 
 public class Client {
@@ -15,7 +11,7 @@ public class Client {
     private String ip;
     private DataOutputStream voiceOut, dataOut;
     private DataInputStream voiceIn, dataIn;
-    private VoiceSender voiceSender;
+    public VoiceSender voiceSender;
     private VoiceReciever voiceReciever;
     private DataReciever dataReciever;
     // gui
@@ -76,7 +72,7 @@ public class Client {
 
     public void startVoice()
     {
-        voiceSender = new VoiceSender(voiceOut);
+        voiceSender = new VoiceSender(voiceOut,this );
         voiceReciever = new VoiceReciever(voiceIn);
     }
 

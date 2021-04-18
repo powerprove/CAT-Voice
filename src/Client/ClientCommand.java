@@ -2,11 +2,13 @@ package Client;
 
 public class ClientCommand
 {
-    private Client client;
+    public Client client;
+
 
     ClientCommand(Client client)
     {
         this.client = client;
+
     }
 
     public void CommandArgv2(String[] command)
@@ -19,6 +21,8 @@ public class ClientCommand
         {
             client.setAnotherUserStatus(command[1]);
         }
+
+
     }
 
     public synchronized void Command(String data)
