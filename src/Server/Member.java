@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Member
+public class Member extends User
 {
     private Room room;
     private Socket member;
@@ -84,7 +84,7 @@ public class Member
     public void recvData(String data)
     {
         System.out.println("recvData");
-        room.sendData(data, roomId);
+        room.CommandData(data, roomId);
     }
 
     //Send Data to Client
