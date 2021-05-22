@@ -22,6 +22,8 @@ public class Member extends User
     private Reciever reciever;
     private VoiceReciever vreciever;
     private CommandHandler commandhandler = new CommandHandler();
+    
+    private boolean Manager = false;
 
     private int roomId;
     private String roomName;
@@ -34,6 +36,9 @@ public class Member extends User
         SetStream();
         Execute();
     }
+
+    public boolean isManager() { return this.Manager; }
+    public void setManageer() { this.Manager = true;}
 
     public void setRoomName(String roomName)
     {

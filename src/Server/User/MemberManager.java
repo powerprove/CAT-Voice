@@ -9,6 +9,8 @@ public class MemberManager
 
     public void addMember(Member member)
     {
+        if (members.isEmpty())
+            member.setManageer();
         if (!MemberManager.members.containsKey(member.getNickName()))
             MemberManager.members.put(member.getNickName(), member);
     }

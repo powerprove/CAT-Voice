@@ -8,12 +8,10 @@ public class Room
 {
     private ArrayList<Member> room = new ArrayList<>();
     private String name;
-    private RoomCommand roomcommand;
 
     public Room(String name)
     {
         this.name = name;
-        roomcommand = new RoomCommand(this);
     }
 
     public String getRoomName()
@@ -68,11 +66,6 @@ public class Room
             if (member.getRoomId() != roomnum)
                 member.sendVoice(Data, count);
         }
-    }
-
-    public void CommandData(String data, int roomid)
-    {
-        roomcommand.CommandParse(data, roomid);
     }
 
     @Override
