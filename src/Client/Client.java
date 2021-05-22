@@ -58,7 +58,6 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        sendData("COMMANDSTART:"+"INROOM:"+myUser.getNickName()+":"+myUser.getStatusMessage()+":END");
         startVoice();
     }
 
