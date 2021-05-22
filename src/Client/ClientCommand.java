@@ -2,34 +2,45 @@ package Client;
 
 public class ClientCommand
 {
-    private Client client;
+    public Client client;
+
 
     ClientCommand(Client client)
     {
         this.client = client;
+
     }
 
-    public void CommandArgv2(String[] command)
+    public void CommandArgv2(String[] command,User myUser)
     {
-        if (command[0].equals("SETNAME"))
-        {
-            client.setAnotherUserName(command[1]);
+       if("USERROOMID".equals(command[1])){
+            myUser.roomid = Integer.parseInt(command[2]);
         }
-        else if (command[0].equals("SETSTATUS"))
-        {
-            client.setAnotherUserStatus(command[1]);
+        else if("INROOMUSER".equals(command[1])){ // another User info Save
+            int idx = Integer.parseInt(command[4]);
+            myUser.roomUserName[idx] = command[2]; // nickName
+            myUser.roomUserMSG[idx] = command[3]; // state message
         }
+        else if("SETMYSTATUS".equals(command[1])) { // change statemessage
+            int idx = Integer.parseInt(command[2]);
+            myUser.roomUserMSG[idx] = command[3];
+        }
+        else if("GETROOMLIST".equals(command[1])){ // Room List SAVE
+            //COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END//
+           int roomCount = Integer.parseInt(command[3]);
+            for(int i=0; i<=roomCount; i+=2){
+                myUser.roomInfo[i].roomName = command[4+i];
+                myUser.roomInfo[i].headCount = Integer.parseInt(command[4+i+1]);
+            }
+
+       }
     }
 
-    public synchronized void Command(String data)
+    public synchronized void Command(String data,User myUser)
     {
         String[] command = data.split(":");
-        //System.out.println(command);
+        CommandArgv2(command,myUser);
 
-        if (command.length == 3)
-        {
-            CommandArgv2(command);
-        }
 
     }
 }
