@@ -1,4 +1,9 @@
-package Server;
+package Server.User;
+
+import Server.Command.CommandHandler;
+import Server.Room.Room;
+import Server.Server;
+import Server.User.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,10 +21,11 @@ public class Member extends User
     private DataOutputStream voiceOut;
     private Reciever reciever;
     private VoiceReciever vreciever;
+    private CommandHandler commandhandler = new CommandHandler();
 
     private int roomId;
 
-    Member(Socket member, Socket vmember) throws IOException
+    public Member(Socket member, Socket vmember) throws IOException
     {
         this.member = member;
         this.vmember = vmember;
@@ -28,18 +34,18 @@ public class Member extends User
         Execute();
     }
 
-    void setRoomId(int id)
+    public void setRoomId(int id)
     {
         System.out.println("[ROOM] => ROOMID " + id);
         roomId = id;
     }
 
-    int getRoomId()
+    public int getRoomId()
     {
         return roomId;
     }
 
-    void setRoom(Room room)
+    public void setRoom(Room room)
     {
         this.room = room;
     }
@@ -84,7 +90,7 @@ public class Member extends User
     public void recvData(String data)
     {
         System.out.println("recvData");
-        room.CommandData(data, roomId);
+        commandhandler.CommandExecute(data);
     }
 
     //Send Data to Client
@@ -114,6 +120,25 @@ public class Member extends User
         }
     }
 
+    @Override
+    public String toString()
+    {
+        return getNickName();
+    }
 
+    @Override
+    public boolean equals(Object target)
+    {
+        if (target.getClass() != getClass())
+            return false;
+        Member tmpRoom = (Member)target;
+        return (tmpRoom.getNickName().equals(this.getNickName()));
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.getNickName().hashCode();
+    }
 
 }

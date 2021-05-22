@@ -1,5 +1,8 @@
-package Server;
+package Server.Room;
 
+
+import Server.Room.Room;
+import Server.Server;
 
 public class RoomCommand
 {

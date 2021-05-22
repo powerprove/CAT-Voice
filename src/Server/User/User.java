@@ -1,4 +1,6 @@
-package Server;
+package Server.User;
+
+import Server.Server;
 
 public class User
 {

@@ -1,9 +1,11 @@
-package Server;
+package Server.User;
+
+import Server.Server;
+import Server.User.Member;
 
 import javax.sound.sampled.*;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class VoiceReciever extends Thread
 {

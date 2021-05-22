@@ -1,7 +1,7 @@
-package Server;
+package Server.User;
 
-import Client.Client;
-import Client.ClientCommand;
+import Server.Server;
+import Server.User.Member;
 
 import java.io.DataInputStream;
 import java.io.IOException;

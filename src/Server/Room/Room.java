@@ -1,15 +1,24 @@
-package Server;
+package Server.Room;
+
+import Server.User.Member;
 
 import java.util.ArrayList;
 
 public class Room
 {
     static ArrayList<Member> room = new ArrayList<>();
+    private String name;
     private RoomCommand roomcommand;
 
-    public Room()
+    public Room(String name)
     {
+        this.name = name;
         roomcommand = new RoomCommand(this);
+    }
+
+    public String getRoomName()
+    {
+        return this.name;
     }
 
     public void addMember(Member member)
@@ -56,5 +65,19 @@ public class Room
         roomcommand.CommandParse(data, roomid);
     }
 
+    @Override
+    public boolean equals(Object target)
+    {
+        if (target.getClass() != getClass())
+            return false;
+        Room tmpRoom = (Room)target;
+        return (tmpRoom.getRoomName().equals(this.name));
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.name.hashCode();
+    }
 
 }

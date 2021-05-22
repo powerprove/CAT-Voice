@@ -1,21 +1,28 @@
 package Server;
 
+import Server.Room.RoomManager;
+import Server.User.Member;
+import Server.User.MemberManager;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Server extends Thread
 {
-    //static ArrayList<Room> room = new ArrayList<>();
-    static Room room;
+    private static MemberManager memberManager = new MemberManager();
+    private static RoomManager roomManager = new RoomManager();
     public ServerSocket serverSocket;
     public ServerSocket vserverSocket;
 
     public Server()
     {
         OpenSocket();
-        room = new Room();
+    }
+
+    public static RoomManager getRoomManager() {
+        return roomManager;
     }
 
     // Socket open
@@ -50,7 +57,7 @@ public class Server extends Thread
     {
         System.out.println("[SERVER] INPUT => " + vmember.getInetAddress());
         Member client = new Member(member, vmember);
-        room.addMember(client);
+        memberManager.addMember(client);
     }
 
     @Override
@@ -67,6 +74,7 @@ public class Server extends Thread
                 addMember(member, vmember);
             } catch (IOException e) {
                 e.printStackTrace();
+                break;
             }
         }
     }
