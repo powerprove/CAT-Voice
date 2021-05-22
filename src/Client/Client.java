@@ -16,7 +16,9 @@ public class Client {
     private DataReciever dataReciever;
     // gui
     private CallFrame callFrame;
+    public Client(){
 
+    }
     public Client(User myUser, String ip) throws IOException
     {
         this.myUser = myUser;

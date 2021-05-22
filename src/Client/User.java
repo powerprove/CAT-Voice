@@ -7,7 +7,9 @@ public class User
     int roomid;
     private String nickName;
     private String statusMessage;
-    User(String nickName,String statusMessage)
+    public User(){
+    }
+    public User(String nickName,String statusMessage)
     {
         this.nickName = nickName;
         setStatusMessage(statusMessage);
