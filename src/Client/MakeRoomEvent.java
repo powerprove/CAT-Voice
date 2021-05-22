@@ -6,8 +6,7 @@ public class MakeRoomEvent extends User{
     private String roomName;
     private Client client;
     private User usr;
-    public MakeRoomEvent(Client clt , String text) {
-        this.client = clt;
+    public MakeRoomEvent(String text) {
         this.roomName = text;
     }
 
