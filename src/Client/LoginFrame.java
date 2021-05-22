@@ -178,6 +178,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         User user1 = new User(name.getText(), profile.getText());
 
+
         user1.setNickname(name.getText());
         user1.setStatusMessage(profile.getText());
         new CallFrame().setVisible(true);

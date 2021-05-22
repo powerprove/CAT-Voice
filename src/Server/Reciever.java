@@ -1,22 +1,22 @@
-package Client;
+package Server;
+
+import Client.Client;
+import Client.ClientCommand;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class DataReciever extends Thread
+public class Reciever extends Thread
 {
     private DataInputStream in;
     private boolean running;
-    private ClientCommand clientCommand;
-    public User myUser;
+    private Member member;
 
-    DataReciever(DataInputStream in, Client client, User myUser)
+    Reciever(DataInputStream in, Member member)
     {
         this.in = in;
-        this.myUser = myUser;
         running = true;
-        clientCommand = new ClientCommand(client);
-
+        this.member = member;
         start();
     }
 
@@ -31,9 +31,10 @@ public class DataReciever extends Thread
         {
             try
             {
+                //System.out.println("RECV");
                 String Data = in.readUTF();
-                System.out.println(Data);
-                clientCommand.Command(Data,myUser);
+                //System.out.print("Data");
+                member.recvData(Data);
             }
             catch (IOException e)
             {
@@ -45,3 +46,4 @@ public class DataReciever extends Thread
 
     }
 }
+

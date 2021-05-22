@@ -1,4 +1,4 @@
-package Client;
+package Server;
 
 import javax.sound.sampled.*;
 import java.io.DataInputStream;
@@ -7,34 +7,26 @@ import java.io.InputStream;
 
 public class VoiceReciever extends Thread
 {
-    private DataInputStream in;
-    private boolean running = true;
+    DataInputStream in;
+    boolean running = true;
+    Member member;
 
-    VoiceReciever (DataInputStream in)
+    VoiceReciever (DataInputStream in, Member member)
     {
         this.in=in;
+        this.member = member;
         start();
     }
+
     public void setRunning (boolean running)
     {
         this.running=running;
     }
-    
+
     @Override
     public void run()
     {
         AudioFormat format = new AudioFormat(8000.F,16,1,true,false);
-        DataLine.Info speakerInfo = new DataLine.Info(SourceDataLine.class, format);
-
-        SourceDataLine speaker = null;
-        try {
-            speaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
-            speaker.open(format);
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-
-        speaker.start();
 
         byte[] data = new byte[8000];
 
@@ -54,9 +46,10 @@ public class VoiceReciever extends Thread
                 e.printStackTrace();
             }
 
-            if(readCount>0){
-                speaker.write(data,0,readCount);
+            System.out.println(readCount);
 
+            if(readCount>0){
+                member.recvVoice(data, readCount);
             }
 
         }
@@ -64,3 +57,4 @@ public class VoiceReciever extends Thread
 
     }
 }
+
