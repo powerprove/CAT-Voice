@@ -59,6 +59,7 @@ public class Client {
     {
         startData();
         startVoice();
+        sendData("COMMANDSTART:GETROOMLIST:"+myUser.getNickName()+":END");
     }
 
     public void startVoice()
@@ -103,7 +104,6 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            //COMMANDSTART:SETMYSTATUS:룸ID:상메:END
             sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
             //sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
