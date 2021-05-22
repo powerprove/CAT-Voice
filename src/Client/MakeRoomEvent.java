@@ -12,7 +12,7 @@ public class MakeRoomEvent extends User{
 
     public void sendMakeRoomData() throws IOException { // 서버로 방생성 정보 전달.
 
-        client.sendData("COMMANDSTART:CREATEROOM:NAME:"+getNickName()+":TITLE:"+roomName+":END");
+        client.sendData("COMMANDSTART:CREATEROOM:"+getNickName()+":"+roomName+":END");
     }
 
 }
