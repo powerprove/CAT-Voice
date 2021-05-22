@@ -26,6 +26,11 @@ public class Room
         room.add(member);
     }
 
+    public ArrayList<Member> getMembers()
+    {
+        return this.room;
+    }
+
     public Member getMember(int id)
     {
         return room.get(id);

@@ -66,6 +66,15 @@ public class RoomManager
         return roomList;
     }
 
+    public static void sendNotice(byte[] Data, int count)
+    {
+        for (Entry<String, Room> entry : RoomManager.rooms.entrySet()) {
+            Room room = entry.getValue();
+            for (Member member : room.getMembers()) {
+                    member.sendVoice(Data, count);
+            }
+        }
+    }
 
 
 

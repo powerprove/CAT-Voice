@@ -2,6 +2,7 @@ package Server.User;
 
 import Server.Command.CommandHandler;
 import Server.Room.Room;
+import Server.Room.RoomManager;
 import Server.Server;
 import Server.User.User;
 
@@ -24,6 +25,7 @@ public class Member extends User
     private CommandHandler commandhandler = new CommandHandler();
     
     private boolean Manager = false;
+    private boolean isNotice = false;
 
     private int roomId;
     private String roomName;
@@ -38,7 +40,17 @@ public class Member extends User
     }
 
     public boolean isManager() { return this.Manager; }
+
     public void setManageer() { this.Manager = true;}
+
+    public void setisNotice() {
+        if (isManager()){
+            if (this.isNotice == true)
+                this.isNotice = false;
+            else if (this.isNotice = false)
+                this.isNotice = true;
+        }
+    }
 
     public void setRoomName(String roomName)
     {
@@ -124,7 +136,10 @@ public class Member extends User
 
     public void recvVoice(byte[] data, int count)
     {
-        room.sendVoice(data, roomId, count);
+        if (isNotice)
+            RoomManager.sendNotice(data, count);
+        else
+            room.sendVoice(data, roomId, count);
     }
 
     public void sendVoice(byte[] data, int count)

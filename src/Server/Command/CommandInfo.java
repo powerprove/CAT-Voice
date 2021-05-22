@@ -31,5 +31,8 @@ public class CommandInfo
     public static int GetRoomListArgs = 4;
     // COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END
 
+    // COMMANDSTART:SETNOTICE:아이디(nickname):END
+    public static String SETNOTICE = "SETNOTICE";
+    public static int SetNoticeArgv = 4;
 
 }
