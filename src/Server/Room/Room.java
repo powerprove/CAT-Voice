@@ -32,6 +32,10 @@ public class Room
     {
         return room.get(id);
     }
+    public int getMemberNum()
+    {
+        return room.size();
+    }
 
     public void sendDataMember(String Data, int id)
     {

@@ -4,6 +4,7 @@ public class CommandInfo
 {
     public static String CommandStart = "COMMANDSTART:";
     public static String CommandEnd = ":END";
+    public static String Server = "SERVER";
     public static String splitCommand = ":";
 
     // COMMANDSTART:CREATEROOM:아이디(nickname):방제목:END
@@ -24,6 +25,11 @@ public class CommandInfo
     public static String SetMyStatus = "SETMYSTATUS";
     public static int SetMyStatusArgs = 6;
     // COMMANDSTART:SETMYSTATUS:바뀔유저이름:바뀐상메:END
+
+    // COMMANDSTART:GETROOMLIST:아이디(nickname):END
+    public static String GetRoomList = "GETROOMLIST";
+    public static int GetRoomListArgs = 4;
+    // COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END
 
 
 }

@@ -1,9 +1,11 @@
 package Server.Room;
 
+import Server.Command.CommandInfo;
 import Server.User.Member;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 
 public class RoomManager
 {
@@ -51,6 +53,17 @@ public class RoomManager
             room = RoomManager.rooms.get(roomName);
 
         return room;
+    }
+
+    public static String getRoomList()
+    {
+        String roomList = RoomManager.rooms.size() + CommandInfo.splitCommand;
+        for ( Entry<String, Room> entry : RoomManager.rooms.entrySet() )
+        {
+            roomList = roomList.concat(entry.getKey() + CommandInfo.splitCommand);
+            roomList = roomList.concat(entry.getValue().getMemberNum() + CommandInfo.splitCommand);
+        }
+        return roomList;
     }
 
 

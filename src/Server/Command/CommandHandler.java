@@ -30,6 +30,10 @@ public class CommandHandler
         {
             command = new SetMyStatus(commandString);
         }
+        else if (commandString[1].equals(CommandInfo.GetRoomList))
+        {
+            command = new GetRoomList(commandString);
+        }
         return command;
     }
 }
