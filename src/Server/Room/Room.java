@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Room
 {
-    static ArrayList<Member> room = new ArrayList<>();
+    private ArrayList<Member> room = new ArrayList<>();
     private String name;
     private RoomCommand roomcommand;
 
@@ -44,17 +44,23 @@ public class Room
         System.out.println("[ROOM] sendData => " + Data);
         for (Member member : room)
         {
-            if (member.getRoomId() != roomnum)
-                member.sendData(Data);
+            member.sendData(Data);
+        }
+    }
+
+    public void sendAllData(String Data)
+    {
+        System.out.println("[ROOM] sendData => " + Data);
+        for (Member member : room)
+        {
+            member.sendData(Data);
         }
     }
 
     public void sendVoice(byte[] Data, int roomnum, int count)
     {
-        //System.out.println("[ROOM] sendVoice");
         for (Member member : room)
         {
-            //System.out.println(count);
             if (member.getRoomId() != roomnum)
                 member.sendVoice(Data, count);
         }

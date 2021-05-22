@@ -31,7 +31,7 @@ public class RoomManager
         }
     }
 
-    public void JoinRoom(String Roomname, Member member)
+    public static void JoinRoom(String Roomname, Member member)
     {
         if (RoomManager.rooms.containsKey(Roomname))
         {
@@ -43,6 +43,16 @@ public class RoomManager
             }
         }
     }
+
+    public static Room getRoom(String roomName)
+    {
+        Room room = null;
+        if (RoomManager.rooms.containsKey(roomName))
+            room = RoomManager.rooms.get(roomName);
+
+        return room;
+    }
+
 
 
 

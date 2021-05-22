@@ -24,6 +24,7 @@ public class Member extends User
     private CommandHandler commandhandler = new CommandHandler();
 
     private int roomId;
+    private String roomName;
 
     public Member(Socket member, Socket vmember) throws IOException
     {
@@ -32,6 +33,17 @@ public class Member extends User
         room = null;
         SetStream();
         Execute();
+    }
+
+    public void setRoomName(String roomName)
+    {
+        System.out.println("[ROOM] => ROOMName " + roomName);
+        this.roomName = roomName;
+    }
+
+    public String getRoomName()
+    {
+        return this.roomName;
     }
 
     public void setRoomId(int id)

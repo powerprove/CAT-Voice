@@ -22,6 +22,14 @@ public class CommandHandler
         {
             command = new DeleteRoom(commandString);
         }
+        else if (commandString[1].equals(CommandInfo.InRoom))
+        {
+            command = new InRoom(commandString);
+        }
+        else if (commandString[1].equals(CommandInfo.SetMyStatus))
+        {
+            command = new SetMyStatus(commandString);
+        }
         return command;
     }
 }

@@ -12,4 +12,12 @@ public class MemberManager
         if (!MemberManager.members.containsKey(member.getNickName()))
             MemberManager.members.put(member.getNickName(), member);
     }
+
+    public static Member getMember(String nickName)
+    {
+        Member member = null;
+        if (MemberManager.members.containsKey(nickName))
+            member = MemberManager.members.get(nickName);
+        return member;
+    }
 }
