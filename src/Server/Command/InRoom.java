@@ -36,6 +36,7 @@ public class InRoom implements Command
                 Room room = RoomManager.getRoom(this.roomName);
                 if (room != null)
                 {
+                    member.setRoom(room);
                     String format =
                             CommandInfo.CommandStart + CommandInfo.splitCommand
                             + CommandInfo.InRoomSendCommand + CommandInfo.splitCommand

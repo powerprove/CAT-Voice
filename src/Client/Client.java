@@ -44,6 +44,7 @@ public class Client {
     public void setSocketCommand() throws IOException
     {
         socketCommand = new ConnectCommand();
+        //System.out.println(ip);
         socketCommand.execute(ip);
     }
 
@@ -89,10 +90,7 @@ public class Client {
         dataOut.flush();
     }
 
-    public void startNotice() throws IOException { // 공지 알리기
-        String packet = "COMMANDSTART:SETNOTICE:"+myUser.getNickName()+":END";
-        sendData(packet);
-    }
+
     public String getMyUserName()
     {
         return myUser.getNickName();

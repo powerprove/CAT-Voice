@@ -11,7 +11,7 @@ public class GetRoomList implements Command
 
     public GetRoomList(String[] args)
     {
-        if ((args.length == CommandInfo.DeleteRoomArgs))
+        if ((args.length == CommandInfo.GetRoomListArgs))
         {
             this.Name = args[2];
             sw = true;
@@ -28,7 +28,9 @@ public class GetRoomList implements Command
                             + CommandInfo.Server + CommandInfo.splitCommand;
             format += RoomManager.getRoomList() + CommandInfo.CommandEnd;
 
+            System.out.print("TEST33");
             Member member = MemberManager.getMember(this.Name);
+            System.out.print("format : " + format);
             member.sendData(format);
         }
     }
