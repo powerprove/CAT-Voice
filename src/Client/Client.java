@@ -89,7 +89,10 @@ public class Client {
         dataOut.flush();
     }
 
-
+    public void startNotice() throws IOException { // 공지 알리기
+        String packet = "COMMANDSTART:SETNOTICE:"+myUser.getNickName()+":END";
+        sendData(packet);
+    }
     public String getMyUserName()
     {
         return myUser.getNickName();

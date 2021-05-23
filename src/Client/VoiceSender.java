@@ -60,11 +60,13 @@ public class VoiceSender extends Thread
             {
                 try {
                     System.out.println(i++);
-                    chk = true;
+                    //************mic.getLevel();*************
+                    // 라인의 현재의 볼륨 레벨을 취득합니다. 이 레벨은 신호의 현재의 진폭의 척도입니다.
+                    //또, 이 레벨과 게인 컨트롤의 현재의 설정을 혼동 하지 말아 주세요.
+                    // 범위는 0.0 (소리의 나오지 않는 상태)에서 1.0 (사운드 파형의 최대 진폭)까지입니다.
+                    // 단위는 데시벨은 아니고 선형 진폭으로 측정됩니다.
                     out.write(bytes,0,count); //
-             //       System.out.println(clientCommand.client.getMyUserName());
 
-                    chk = false; // add
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
