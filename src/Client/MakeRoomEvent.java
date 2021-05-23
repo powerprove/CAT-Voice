@@ -1,8 +1,9 @@
 package Client;
 
 import java.io.IOException;
+import Client.LoginFrame;
 
-public class MakeRoomEvent extends User{
+public class MakeRoomEvent {
     private String roomName;
     private Client client;
     private User usr;
@@ -11,8 +12,10 @@ public class MakeRoomEvent extends User{
     }
 
     public void sendMakeRoomData() throws IOException { // 서버로 방생성 정보 전달.
-
-        client.sendData("COMMANDSTART:CREATEROOM:"+getNickName()+":"+roomName+":END");
+        User usr = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
+        Client client = new Client(usr, LoginFrame.ipaddr.getText());
+        System.out.println("Test1 : "+roomName);
+        System.out.println("Test2 : "+ usr.getNickName());
+        client.sendData("COMMANDSTART:CREATEROOM:"+usr.getNickName()+":"+roomName+":END");
     }
-
 }

@@ -32,6 +32,7 @@ public class ClientCommand
                 myUser.roomInfo[i].roomName = command[4+i];
                 myUser.roomInfo[i].headCount = Integer.parseInt(command[4+i+1]);
             }
+            myUser.roomCnt = roomCount;
 
        }
     }

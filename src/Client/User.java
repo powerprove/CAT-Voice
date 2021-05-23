@@ -8,6 +8,8 @@ class _roomInfo{
 public class User
 {
     _roomInfo[] roomInfo = new _roomInfo[100];
+    int roomCnt;
+
     String[] roomUserName = new String[101];
     String[] roomUserMSG = new String[101];
 
