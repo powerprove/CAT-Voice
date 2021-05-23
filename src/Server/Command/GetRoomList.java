@@ -11,7 +11,7 @@ public class GetRoomList implements Command
 
     public GetRoomList(String[] args)
     {
-        if ((args.length == CommandInfo.DeleteRoomArgs))
+        if ((args.length == CommandInfo.GetRoomListArgs))
         {
             this.Name = args[2];
             sw = true;
