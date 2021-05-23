@@ -7,15 +7,14 @@ import java.io.InputStream;
 
 public class VoiceReciever extends Thread
 {
-    DataInputStream in;
-    boolean running = true;
+    private DataInputStream in;
+    private boolean running = true;
 
     VoiceReciever (DataInputStream in)
     {
         this.in=in;
         start();
     }
-
     public void setRunning (boolean running)
     {
         this.running=running;
@@ -55,10 +54,9 @@ public class VoiceReciever extends Thread
                 e.printStackTrace();
             }
 
-            //System.out.println(readCount);
-
             if(readCount>0){
                 speaker.write(data,0,readCount);
+
             }
 
         }

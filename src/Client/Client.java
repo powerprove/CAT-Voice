@@ -3,10 +3,6 @@ package Client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 
 public class Client {
@@ -15,12 +11,14 @@ public class Client {
     private String ip;
     private DataOutputStream voiceOut, dataOut;
     private DataInputStream voiceIn, dataIn;
-    private VoiceSender voiceSender;
+    public VoiceSender voiceSender;
     private VoiceReciever voiceReciever;
     private DataReciever dataReciever;
     // gui
     private CallFrame callFrame;
+    public Client(){
 
+    }
     public Client(User myUser, String ip) throws IOException
     {
         this.myUser = myUser;
@@ -45,16 +43,8 @@ public class Client {
 
     public void setSocketCommand() throws IOException
     {
-
-        if ( ip.equals("0.0.0.0") || ip.equals("localhost"))
-        {
-            socketCommand = new ListenCommand();
-        }
-        else
-        {
-            socketCommand = new ConnectCommand();
-        }
-
+        socketCommand = new ConnectCommand();
+        //System.out.println(ip);
         socketCommand.execute(ip);
     }
 
@@ -69,14 +59,13 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        sendData("SETNAME:" + myUser.getNickName() + ":END");
-        sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
         startVoice();
+        sendData("COMMANDSTART:GETROOMLIST:"+myUser.getNickName()+":END");
     }
 
     public void startVoice()
     {
-        voiceSender = new VoiceSender(voiceOut);
+        voiceSender = new VoiceSender(voiceOut,this );
         voiceReciever = new VoiceReciever(voiceIn);
     }
 
@@ -92,7 +81,7 @@ public class Client {
     
     public void startData()
     {
-        dataReciever = new DataReciever(dataIn, this);
+        dataReciever = new DataReciever(dataIn, this,myUser);
     }
 
     public void sendData(String data) throws IOException
@@ -106,7 +95,7 @@ public class Client {
     {
         return myUser.getNickName();
     }
-
+    public int getMyUserRoomid(){ return myUser.getRoomid(); }
     public String getMyUserStatus()
     {
         return myUser.getStatusMessage();
@@ -116,7 +105,8 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            sendData("SETSTATUS:" + myUser.getStatusMessage() + ":END");
+            sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
+            //sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
             e.printStackTrace();
         }
