@@ -17,6 +17,12 @@ public class MemberManager
 
     public static Member getMember(String nickName)
     {
+
+        for( String key : members.keySet() ){
+            Member value = members.get(key);
+            System.out.println( String.format("키 : "+key+", 값 : "+value));
+        }
+
         Member member = null;
         if (MemberManager.members.containsKey(nickName))
             member = MemberManager.members.get(nickName);

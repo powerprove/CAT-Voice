@@ -37,6 +37,17 @@ public class Member extends User
         room = null;
         SetStream();
         Execute();
+        setNickName();
+    }
+
+    public void setNickName() throws IOException
+    {
+        while (this.getNickName() == null) {
+            String nickname = this.dataIn.readUTF();
+            String[] nickname2 = nickname.split(":");
+            System.out.println("CREATE MEMBER => " + nickname2[2]);
+            this.setNickname(nickname2[2]);
+        }
     }
 
     public boolean isManager() { return this.Manager; }
@@ -114,11 +125,13 @@ public class Member extends User
 
         reciever = new Reciever(dataIn, this);
         vreciever = new VoiceReciever(voiceIn, this);
+
+
     }
 
     public void recvData(String data)
     {
-        System.out.println("recvData");
+        //System.out.println("recvData");
         commandhandler.CommandExecute(data);
     }
 

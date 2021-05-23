@@ -29,7 +29,8 @@ public class GetRoomList implements Command
             format += RoomManager.getRoomList() + CommandInfo.CommandEnd;
 
             Member member = MemberManager.getMember(this.Name);
-            member.sendData(format);
+            if (member != null)
+                member.sendData(format);
         }
     }
 }
