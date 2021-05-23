@@ -185,14 +185,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_jLabel8MouseClicked
 
-        User user1 = new User(name.getText(), profile.getText());
-
-        user1.setNickname(name.getText());
-        user1.setStatusMessage(profile.getText());
-        
-        Client client1 = new Client(user1, ipaddr.getText());
-        System.out.println("COMMANDSTART:LOGIN:"+name.getText()+":END");
-        client1.sendData("COMMANDSTART:LOGIN:"+name.getText()+":END");
+       ClientHandler clientHandler = new ClientHandler();
+       clientHandler.createHandler();
+       clientHandler.client.sendData("COMMANDSTART:LOGIN:"+name.getText()+":END");
+     //  Client client1 = new Client(user1, ipaddr.getText());
+       // System.out.println("COMMANDSTART:LOGIN:"+name.getText()+":END");
+        //client1.sendData();
         new WatingRoomFrame().setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
 
