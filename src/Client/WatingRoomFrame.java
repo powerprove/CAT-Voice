@@ -7,6 +7,7 @@ package Client;
 
 import Client.InputRoomFrame;
 import Client.CallFrame;
+import static Client.LoginFrame.name;
 import Client.WatingRoomFrame;
 import Client.User;
 import javax.swing.*;
@@ -39,6 +40,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
         */
 
     }
+    
     
 
     /**
@@ -175,9 +177,9 @@ public class WatingRoomFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitButtonMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_QuitButtonMouseClicked
-        //System.exit(0)
-        Client client1 = new Client(User1, LoginFrame.ipaddr.getText());
-        client1.sendData("COMMANDSTART:GETROOMLIST:NICKNAME:END");// TODO add your handling code here:
+      ClientHandler clientHandler = new ClientHandler();
+      clientHandler.client.sendData("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
+       // client1.sendData("COMMANDSTART:GETROOMLIST:NICKNAME:END");// TODO add your handling code here:
     }//GEN-LAST:event_QuitButtonMouseClicked
 
     private void MakeRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MakeRoomButtonMouseClicked
