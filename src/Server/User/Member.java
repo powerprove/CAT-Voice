@@ -36,8 +36,8 @@ public class Member extends User
         this.vmember = vmember;
         room = null;
         SetStream();
-        Execute();
         setNickName();
+        Execute();
     }
 
     public void setNickName() throws IOException
@@ -58,7 +58,7 @@ public class Member extends User
         if (isManager()){
             if (this.isNotice == true)
                 this.isNotice = false;
-            else if (this.isNotice = false)
+            else if (this.isNotice == false)
                 this.isNotice = true;
         }
     }
