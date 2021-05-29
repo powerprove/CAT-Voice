@@ -2,8 +2,8 @@ package Server.Command;
 
 public class CommandInfo
 {
-    public static String CommandStart = "COMMANDSTART:";
-    public static String CommandEnd = ":END";
+    public static String CommandStart = "COMMANDSTART";
+    public static String CommandEnd = "END";
     public static String Server = "SERVER";
     public static String splitCommand = ":";
 

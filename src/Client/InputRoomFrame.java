@@ -7,7 +7,6 @@ package Client;
 
 import Client.MakeRoomEvent;
 import Client.WatingRoomFrame;
-import static Client.WatingRoomFrame.User1;
 import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
@@ -94,11 +93,11 @@ public class InputRoomFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreateRoomButtonMouseClicked (java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_CreateRoomButtonMouseClicked
+        ClientHandler clientHandler = new ClientHandler();
         MakeRoomEvent MakeRoomEvent1 = new MakeRoomEvent(RoomName.getText());
         System.out.println(RoomName.getText());
         MakeRoomEvent1.sendMakeRoomData();
-        User1.roomcnt += 1;
-        System.out.println(User1.roomcnt);
+        ClientHandler.user.roomcnt += 1;
        /* for(int i = 0; i < User1.roomcnt; i++){
             vec.addElement(User1.roomInfo[i].roomName);
             System.out.println(User1.roomInfo[i].roomName);

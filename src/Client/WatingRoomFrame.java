@@ -178,7 +178,9 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 
     private void QuitButtonMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_QuitButtonMouseClicked
       ClientHandler clientHandler = new ClientHandler();
+      System.out.print("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
       clientHandler.client.sendData("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
+      System.out.println(clientHandler.user.roomInfo[0].roomName );
        // client1.sendData("COMMANDSTART:GETROOMLIST:NICKNAME:END");// TODO add your handling code here:
     }//GEN-LAST:event_QuitButtonMouseClicked
 
@@ -187,10 +189,9 @@ public class WatingRoomFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MakeRoomButtonMouseClicked
 
     private void EnterRoomButtonMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_EnterRoomButtonMouseClicked
-        User usr3 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
-        User myUser = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
-        Client client2 = new Client(usr3, LoginFrame.ipaddr.getText());
-        client2.sendData("COMMANDSTART:"+"INROOM:"+myUser.getNickName()+":"+myUser.getNickName()+":"+myUser.getStatusMessage()+":END");
+        ClientHandler clientHandler = new ClientHandler();
+        System.out.println("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+"123"+":END");
+        clientHandler.client.sendData("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+"123"+":END");
         new CallFrame().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_EnterRoomButtonMouseClicked
 

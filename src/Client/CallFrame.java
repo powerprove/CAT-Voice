@@ -499,76 +499,24 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         try{
-            
-            int count=1;//user count
-            switch(count){
-                case 1:
-                    //jButton3&jLabel3 visible
-                    jButton3.setVisible(true);
-                    jLabel3.setVisible(true);
-                    jButton2.setVisible(false);
-                    jLabel6.setVisible(false);
-                    jButton4.setVisible(false);
-                    jLabel13.setVisible(false);
-                    jButton5.setVisible(false);
-                    jLabel19.setVisible(false);
-                    break;
-                case 2:
-                    //jButton2&jLabel6 visible
-                    jButton3.setVisible(true);
-                    jLabel3.setVisible(true);
-                    jButton2.setVisible(true);
-                    jLabel6.setVisible(true);
-                    jButton4.setVisible(false);
-                    jLabel13.setVisible(false);
-                    jButton5.setVisible(false);
-                    jLabel19.setVisible(false);
-                    break;
-                case 3:
-                    //jButton4&jLabel13 visible
-                    jButton3.setVisible(true);
-                    jLabel3.setVisible(true);
-                    jButton2.setVisible(true);
-                    jLabel6.setVisible(true);
-                    jButton4.setVisible(true);
-                    jLabel13.setVisible(true);
-                    jButton5.setVisible(false);
-                    jLabel19.setVisible(false);
-                    break;
-                case 4:
-                    //jButton5&jLabel19 visible
-                    jButton3.setVisible(true);
-                    jLabel3.setVisible(true);
-                    jButton2.setVisible(true);
-                    jLabel6.setVisible(true);
-                    jButton4.setVisible(true);
-                    jLabel13.setVisible(true);
-                    jButton5.setVisible(true);
-                    jLabel19.setVisible(true);
-                    break;
-                default:
-                    break;
-                    
-            }
                 setSpeaker1();
                if ( clientUser1 == null )
                {
-                   User user2 = new User(LoginFrame.name.getText(), LoginFrame.profile.getText());
-                   clientUser1 = new Client(user2, LoginFrame.ipaddr.getText());
-                   clientUser1.startCall();
-                   clientUser1.sendData("COMMAND:ARGV:ARGV:ARGV:END");
-                   clientUser1.callCheck();
-                   clientUser1.setCallFrame(this);
+                   ClientHandler clientHandler = new ClientHandler();
+                   clientHandler.client.startCall();
+                   //clientHandler.client.sendData("COMMAND:ARGV:ARGV:ARGV:END");
+                   clientHandler.client.callCheck();
+                  clientHandler.client.setCallFrame(this);
 
-                   setStatusLabel(clientUser1.getAnotherUserStatus());
-                   setName(clientUser1.getAnotherUserName());
+                   setStatusLabel(clientHandler.client.getAnotherUserStatus());
+                   setName(clientHandler.client.getAnotherUserName());
                    
 
 
-                   System.out.println(clientUser1.getAnotherUserName());
-                   System.out.println(clientUser1.getIP());
-                   System.out.println(clientUser1.getMyUserStatus());
-                   System.out.println(clientUser1.getAnotherUserStatus());
+                   System.out.println(clientHandler.client.getAnotherUserName());
+                   System.out.println(clientHandler.client.getIP());
+                   System.out.println(clientHandler.client.getMyUserStatus());
+                   System.out.println(clientHandler.client.getAnotherUserStatus());
                }
             }
             catch (IOException ex) {

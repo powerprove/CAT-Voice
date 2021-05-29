@@ -1,6 +1,5 @@
 package Client;
 
-import static Client.WatingRoomFrame.User1;
 
 public class ClientCommand
 {
@@ -28,11 +27,11 @@ public class ClientCommand
             myUser.roomUserMSG[idx] = command[3];
         }
         else if("GETROOMLIST".equals(command[1])){ // Room List SAVE
-            System.out.println("InTEST");
             //COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END//
            int roomCount = Integer.parseInt(command[3]);
             for(int i=0; i<=roomCount; i+=2){
                 myUser.roomInfo[i].roomName = command[4+i];
+                System.out.println(command[4+i]);
                 myUser.roomInfo[i].headCount = Integer.parseInt(command[4+i+1]);
             }
             myUser.roomcnt = roomCount;
@@ -42,9 +41,11 @@ public class ClientCommand
 
     public synchronized void Command(String data,User myUser)
     {
+        System.out.println("data : "+data);
+        if (data.contains(":")){
         String[] command = data.split(":");
         CommandArgv2(command,myUser);
-
+        }
 
     }
 }
