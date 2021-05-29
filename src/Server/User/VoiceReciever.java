@@ -1,15 +1,20 @@
 package Server.User;
 
+import Server.Room.Room;
 import Server.Server;
 import Server.User.Member;
 
 import javax.sound.sampled.*;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VoiceReciever extends Thread
 {
     DataInputStream in;
+    private ArrayList<DataOutputStream> outs = new ArrayList<>();
     boolean running = true;
     Member member;
 
@@ -18,6 +23,11 @@ public class VoiceReciever extends Thread
         this.in=in;
         this.member = member;
         start();
+    }
+
+    public void setOut(DataOutputStream out)
+    {
+        this.outs.add(out);
     }
 
     public void setRunning (boolean running)
@@ -51,7 +61,14 @@ public class VoiceReciever extends Thread
             System.out.println(readCount);
 
             if(readCount>0){
-                member.recvVoice(data, readCount);
+                for (DataOutputStream out : this.outs) {
+                    try {
+                        out.write(data, 0, readCount);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                //member.recvVoice(data, readCount);
             }
 
         }
