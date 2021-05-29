@@ -15,6 +15,7 @@ public class User
     static int roomcnt=0;
     private String nickName;
     private String statusMessage;
+    
     public User(){
     }
     public User(String nickName,String statusMessage)
@@ -47,6 +48,12 @@ public class User
     public void setStatusMessage(String statusMessage)
     {
         this.statusMessage = statusMessage;
+    }
+    
+    public void ArraySetting(){
+        for(int i=0; i<100; i++){
+            roomInfo[i] = new _roomInfo();
+        }
     }
 
 }

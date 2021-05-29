@@ -27,6 +27,7 @@ public class Client {
         this.callFrame = null;
         setSocketCommand();
         setDataStream();
+        System.out.println("Create Client");
     }
 
     public void setCallFrame(CallFrame callFrame)
@@ -59,7 +60,7 @@ public class Client {
     public void startCall() throws IOException
     {
         startData();
-        startVoice();
+        //startVoice();
         sendData("COMMANDSTART:GETROOMLIST:"+myUser.getNickName()+":END");
     }
 

@@ -28,9 +28,10 @@ public class GetRoomList implements Command
                             + CommandInfo.Server + CommandInfo.splitCommand;
             format += RoomManager.getRoomList() + CommandInfo.CommandEnd;
 
-            System.out.print("TEST33");
+            System.out.println("TEST33");
             Member member = MemberManager.getMember(this.Name);
-            System.out.print("format : " + format);
+            System.out.println("format : " + format );
+            System.out.println(member.toString());
             member.sendData(format);
         }
     }

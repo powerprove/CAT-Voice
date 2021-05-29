@@ -61,8 +61,7 @@ public class VoiceSender extends Thread
                 try {
                     System.out.println(i++);
                     chk = true;
-                    mic.getLevel();
-                    mic.getFormat();
+                    System.out.print(mic.getLevel());
                     out.write(bytes,0,count); //
              //       System.out.println(clientCommand.client.getMyUserName());
 
