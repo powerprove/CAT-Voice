@@ -31,7 +31,7 @@ public class ClientCommand
            int roomCount = Integer.parseInt(command[3]);
             for(int i=0; i<=roomCount; i+=2){
                 myUser.roomInfo[i].roomName = command[4+i];
-                System.out.println(command[4+i]);
+                System.out.println("command : " + command[4+i]);
                 myUser.roomInfo[i].headCount = Integer.parseInt(command[4+i+1]);
             }
             myUser.roomcnt = roomCount;

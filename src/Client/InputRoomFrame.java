@@ -95,7 +95,6 @@ public class InputRoomFrame extends javax.swing.JFrame {
     private void CreateRoomButtonMouseClicked (java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_CreateRoomButtonMouseClicked
         ClientHandler clientHandler = new ClientHandler();
         MakeRoomEvent MakeRoomEvent1 = new MakeRoomEvent(RoomName.getText());
-        System.out.println(RoomName.getText());
         MakeRoomEvent1.sendMakeRoomData();
         ClientHandler.user.roomcnt += 1;
        /* for(int i = 0; i < User1.roomcnt; i++){

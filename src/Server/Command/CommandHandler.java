@@ -5,7 +5,6 @@ public class CommandHandler
 {
     public void CommandExecute(String data)
     {
-        System.out.println("DATA : "+ data);
         String[] commandString = data.split(CommandInfo.splitCommand);
         Command command = findCommand(commandString);
         if (command != null)
