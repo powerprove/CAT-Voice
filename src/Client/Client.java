@@ -3,6 +3,9 @@ package Client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.net.Socket;
+import java.util.ArrayList;
 
 
 public class Client {
@@ -10,9 +13,9 @@ public class Client {
     private User myUser, anotherUser;
     private String ip;
     private DataOutputStream voiceOut, dataOut;
-    private DataInputStream voiceIn, dataIn;
+    private DataInputStream voiceIn, dataIn, voiceIn2;
     public VoiceSender voiceSender;
-    private VoiceReciever voiceReciever;
+    private ArrayList<VoiceReciever> voiceReciever= new ArrayList<>();
     private DataReciever dataReciever;
     // gui
     private CallFrame callFrame;
@@ -27,6 +30,8 @@ public class Client {
         this.callFrame = null;
         setSocketCommand();
         setDataStream();
+        addVoiceReciever();
+        addVoiceReciever();
         System.out.println("Create Client");
     }
 
@@ -45,6 +50,8 @@ public class Client {
     public void setSocketCommand() throws IOException
     {
         socketCommand = new ConnectCommand();
+        byte[] buf = "LOGIN".getBytes();
+        socketCommand.clientSocket.getOutputStream().write(buf);
         //System.out.println(ip);
         socketCommand.execute(ip);
     }
@@ -72,7 +79,16 @@ public class Client {
     public void startVoice()
     {
         voiceSender = new VoiceSender(voiceOut,this );
-        voiceReciever = new VoiceReciever(voiceIn);
+        voiceReciever.add(new VoiceReciever(voiceIn));
+    }
+
+    public void addVoiceReciever() throws IOException
+    {
+        SocketCommand command = new ConnectCommand();
+        byte[] buf = "ADDLISTENSOCKET".getBytes();
+        command.clientSocket.getOutputStream().write(buf);
+        voiceIn2 = new DataInputStream(command.clientVoiceSocket.getInputStream());
+        voiceReciever.add(new VoiceReciever(voiceIn2));
     }
 
     public int callCheck()
