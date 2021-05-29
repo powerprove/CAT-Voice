@@ -41,6 +41,7 @@ public class GetRoomMemberList implements Command
             String format = CommandInfo.CommandStart + CommandInfo.splitCommand
                     + CommandInfo.GetRoomMemberList + CommandInfo.splitCommand
                     + CommandInfo.Server + CommandInfo.splitCommand
+                    + this.RoomName + CommandInfo.splitCommand
                     + members.size() + CommandInfo.splitCommand;
 
             for (Member member: members)
