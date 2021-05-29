@@ -58,7 +58,7 @@ public class Member extends User
         if (isManager()){
             if (this.isNotice == true)
                 this.isNotice = false;
-            else if (this.isNotice = false)
+            else if (this.isNotice == false)
                 this.isNotice = true;
         }
     }
