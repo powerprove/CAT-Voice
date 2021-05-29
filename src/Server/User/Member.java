@@ -10,6 +10,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Member extends User
 {
@@ -21,7 +22,7 @@ public class Member extends User
     private DataOutputStream dataOut;
     private DataOutputStream voiceOut;
     private Reciever reciever;
-    private VoiceReciever vreciever;
+    private ArrayList<VoiceReciever> vreciever = new ArrayList<>();
     private CommandHandler commandhandler = new CommandHandler();
     
     private boolean Manager = false;
@@ -125,12 +126,11 @@ public class Member extends User
             System.out.println("DataIn is null");
 
         reciever = new Reciever(dataIn, this);
-        vreciever = new VoiceReciever(voiceIn, this);
     }
 
-    public void addvoiceOut(DataOutputStream out)
+    public void addVoiceOut(DataOutputStream out)
     {
-        vreciever.setOut(out);
+        vreciever.add(new VoiceReciever(voiceIn, out, this));
     }
 
 

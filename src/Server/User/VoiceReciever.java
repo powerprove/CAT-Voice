@@ -14,20 +14,16 @@ import java.util.HashMap;
 public class VoiceReciever extends Thread
 {
     DataInputStream in;
-    private ArrayList<DataOutputStream> outs = new ArrayList<>();
+    DataOutputStream out;
     boolean running = true;
     Member member;
 
-    VoiceReciever (DataInputStream in, Member member)
+    VoiceReciever (DataInputStream in, DataOutputStream out, Member member)
     {
         this.in=in;
         this.member = member;
+        this.out = out;
         start();
-    }
-
-    public void setOut(DataOutputStream out)
-    {
-        this.outs.add(out);
     }
 
     public void setRunning (boolean running)
@@ -60,20 +56,21 @@ public class VoiceReciever extends Thread
 
             System.out.println(readCount);
 
-            if(readCount>0){
-                for (DataOutputStream out : this.outs) {
-                    try {
+            if(readCount>0)
+            {
+                    try
+                    {
                         out.write(data, 0, readCount);
-                    } catch (IOException e) {
+                    } catch (IOException e)
+                    {
                         e.printStackTrace();
                     }
-                }
-                //member.recvVoice(data, readCount);
             }
-
+            //member.recvVoice(data, readCount);
         }
 
-
     }
+
+
 }
 
