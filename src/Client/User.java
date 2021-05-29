@@ -22,7 +22,11 @@ public class User
         this.nickName = nickName;
         setStatusMessage(statusMessage);
     }
-
+    public void ArraySetting(){
+        for(int i=0; i<100; i++){
+            roomInfo[i] = new _roomInfo();
+        }
+    }
     public String getNickName()
     {
         return nickName;
