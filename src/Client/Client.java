@@ -95,7 +95,7 @@ public class Client {
         out.flush();
         out.write(getMyUserName().getBytes(StandardCharsets.UTF_8));
         voiceIn2 = new DataInputStream(command.clientVoiceSocket.getInputStream());
-        voiceReciever.add(new VoiceReciever(voiceIn2));
+        //voiceReciever.add(new VoiceReciever(voiceIn2));
     }
 
     public int callCheck()

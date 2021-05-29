@@ -25,8 +25,8 @@ public class Room
         member.setRoom(this);
         member.setRoomId(room.size());
         for (Member anotherMember : this.room) {
-            anotherMember.addVoiceOut(member.getVoiceOut());
-            member.addVoiceOut(anotherMember.getVoiceOut());
+            anotherMember.addVoiceOut(member.getVoiceOutStream());
+            member.addVoiceOut(anotherMember.getVoiceOutStream());
         }
         room.add(member);
     }

@@ -23,7 +23,7 @@ public class Member extends User
     private DataOutputStream voiceOut;
     private Reciever reciever;
 
-    private ArrayList<DataInputStream> vlist = new ArrayList<>();
+    private ArrayList<DataOutputStream> vlist = new ArrayList<>();
     private ArrayList<VoiceReciever> vreciever = new ArrayList<>();
     private CommandHandler commandhandler = new CommandHandler();
     
@@ -42,6 +42,7 @@ public class Member extends User
         SetStream();
         setNickName();
         Execute();
+        addVoiceList(vmember);
     }
 
     public void setNickName() throws IOException
@@ -133,19 +134,26 @@ public class Member extends User
 
     public void addVoiceOut(DataOutputStream out)
     {
-        System.out.println("***********" + getNickName() + ":" + this.useSocket + "***********");
-        int size = this.vlist.size();
-        if (size >= this.useSocket)
-            vreciever.add(new VoiceReciever(this.vlist.get(this.useSocket), out, this));
-        this.useSocket++;
-        System.out.println("***********" + getNickName() + ":" + this.useSocket + "***********");
+        vreciever.add(new VoiceReciever(voiceIn, out, this));
     }
 
     public void addVoiceList(Socket socket) throws IOException
     {
-        DataInputStream voiceInputStream = new DataInputStream(socket.getInputStream());
-        this.vlist.add(voiceInputStream);
+        DataOutputStream voiceOutStream = new DataOutputStream(socket.getOutputStream());
+        this.vlist.add(voiceOutStream);
         System.out.println(this.vlist.size());
+    }
+
+    public DataOutputStream getVoiceOutStream()
+    {
+        DataOutputStream result = dataOut;
+        int size = this.vlist.size();
+        if (size >= this.useSocket)
+        {
+            result = this.vlist.get(this.useSocket);
+            this.useSocket++;
+        }
+        return result;
     }
 
 
