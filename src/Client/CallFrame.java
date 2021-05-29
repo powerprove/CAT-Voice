@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Client.LoginFrame;
+import static Client.LoginFrame.name;
 import Client.MegaphoneFrame;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -25,8 +26,10 @@ public class CallFrame extends javax.swing.JFrame {
     public CallFrame() {
         initComponents();
         jLabel18.setText(LoginFrame.profile.getText());
+        ClientHandler clientHandler = new ClientHandler();
+        
     }
-
+// COMMANDSTART:GETROOMMEMBERLIST:SERVER:방제목:사람수:사람닉네임:사람상태메시지:사람닉네임:사람상태메시지:END
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -508,7 +511,7 @@ public class CallFrame extends javax.swing.JFrame {
                    clientHandler.client.startCall();
                    //clientHandler.client.sendData("COMMAND:ARGV:ARGV:ARGV:END");
                    clientHandler.client.callCheck();
-                  clientHandler.client.setCallFrame(this);
+                   clientHandler.client.setCallFrame(this);
 
                    setStatusLabel(clientHandler.client.getAnotherUserStatus());
                    setName(clientHandler.client.getAnotherUserName());

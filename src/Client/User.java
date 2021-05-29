@@ -1,4 +1,7 @@
 package Client;
+
+import java.io.IOException;
+
 class _roomInfo{
     String roomName;
     int headCount;
@@ -25,11 +28,7 @@ public class User
         this.nickName = nickName;
         setStatusMessage(statusMessage);
     }
-    public void ArraySetting(){
-        for(int i=0; i<100; i++){
-            roomInfo[i] = new _roomInfo();
-        }
-    }
+
     public String getNickName()
     {
         return nickName;
@@ -52,6 +51,15 @@ public class User
         this.statusMessage = statusMessage;
     }
     
-
+    public void ArraySetting(){
+        for(int i=0; i<100; i++){
+            roomInfo[i] = new _roomInfo();
+        }
+    }
+    
+    public void getRoomInfo(String roomName) throws IOException {
+        ClientHandler clientHandler = new ClientHandler();
+        clientHandler.client.sendData("COMMANDSTART:GETROOMMEMBERLIST:"+clientHandler.user.getNickName()+":"+roomName+":END");
+    }
 
 }

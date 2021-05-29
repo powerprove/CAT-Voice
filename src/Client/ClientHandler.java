@@ -13,7 +13,7 @@ public class ClientHandler{
     public void createHandler() throws IOException{
        this.user = new User(LoginFrame.name.getText(),LoginFrame.profile.getText());
        this.client = new Client(user,LoginFrame.ipaddr.getText());
-       client.startCall();
+       client.startClient();
        user.ArraySetting();
     }
 }
