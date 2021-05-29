@@ -27,7 +27,7 @@ public class CallFrame extends javax.swing.JFrame {
         initComponents();
         jLabel18.setText(LoginFrame.profile.getText());
         ClientHandler clientHandler = new ClientHandler();
-        
+           
     }
 // COMMANDSTART:GETROOMMEMBERLIST:SERVER:방제목:사람수:사람닉네임:사람상태메시지:사람닉네임:사람상태메시지:END
     /**
