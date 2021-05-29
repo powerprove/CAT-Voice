@@ -44,9 +44,11 @@ public class Member extends User
     {
         while (this.getNickName() == null) {
             String nickname = this.dataIn.readUTF();
-            String[] nickname2 = nickname.split(":");
-            System.out.println("CREATE MEMBER => " + nickname2[2]);
+            String[] nickname2 = nickname.split(":");            
             this.setNickname(nickname2[2]);
+            this.setStatusMessage(nickname2[3]);
+            System.out.println("CREATE MEMBER => " + nickname2[2]);
+            System.out.println("CREATE MEMBER STATUS => " + nickname2[3]);
         }
     }
 
@@ -76,7 +78,7 @@ public class Member extends User
 
     public void setRoomId(int id)
     {
-        System.out.println("[ROOM] => ROOMID " + id);
+        //System.out.println("[ROOM] => ROOMID " + id);
         roomId = id;
     }
 
