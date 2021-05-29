@@ -76,7 +76,7 @@ public class Member extends User
 
     public void setRoomId(int id)
     {
-        System.out.println("[ROOM] => ROOMID " + id);
+        //System.out.println("[ROOM] => ROOMID " + id);
         roomId = id;
     }
 

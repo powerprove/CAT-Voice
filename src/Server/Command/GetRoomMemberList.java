@@ -50,6 +50,8 @@ public class GetRoomMemberList implements Command
                         + member.getStatusMessage() + CommandInfo.splitCommand);
             }
 
+            format = format.concat(CommandInfo.CommandEnd);
+
             Member member = MemberManager.getMember(this.Name);
             if (member != null)
                 member.sendData(format);

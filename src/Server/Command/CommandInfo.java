@@ -17,7 +17,7 @@ public class CommandInfo
 
     // COMMANDSTART:INROOM:아이디(nickname):닉네임:상태메시지:ROOM이름:END
     public static String InRoom = "INROOM";
-    public static int InRoomArgs = 6;
+    public static int InRoomArgs = 7;
     // COMMANDSTART:INROOMUSER:닉네임:상태메시지:END
     public static String InRoomSendCommand = "INROOMUSER";
 
