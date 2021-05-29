@@ -113,6 +113,10 @@ public class Client {
         }
     }
 
+    public void getRoomInfo(String roomName) throws IOException {
+        sendData("COMMANDSTART:GETROOMMEMBERLIST:"+myUser.getNickName()+":"+roomName+":END");
+    }
+
     public String getAnotherUserName()
     {
         return anotherUser.getNickName();
