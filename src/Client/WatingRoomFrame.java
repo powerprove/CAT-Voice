@@ -7,12 +7,14 @@ package Client;
 
 import Client.InputRoomFrame;
 import Client.CallFrame;
+import static Client.InputRoomFrame.vec;
 import static Client.LoginFrame.name;
 import Client.WatingRoomFrame;
 import Client.User;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import static java.util.Collections.list;
 import java.util.Vector;
 
 /**
@@ -86,11 +88,6 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 
         jList1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255), new java.awt.Color(204, 255, 255)));
         jList1.setFont(new java.awt.Font("Papyrus", 3, 14)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "room1", "room2", "room3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setSelectionBackground(new java.awt.Color(153, 204, 255));
         jScrollPane1.setViewportView(jList1);
 
@@ -100,7 +97,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 	try{
                 EnterRoomButtonMouseClicked(evt);
 	}
-	catch (IOException e){}
+	catch(IOException e){}
             }
         });
 
@@ -110,7 +107,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 	try{
                 QuitButtonMouseClicked(evt);
 	}
-	catch (IOException e){}
+	catch(IOException e){}
             }
         });
 
@@ -180,18 +177,29 @@ public class WatingRoomFrame extends javax.swing.JFrame {
       ClientHandler clientHandler = new ClientHandler();
       System.out.print("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
       clientHandler.client.sendData("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
-      System.out.println(clientHandler.user.roomInfo[0].roomName );
+      DefaultListModel model = new DefaultListModel();
+      for(int i = 0; i <= clientHandler.user.roomcnt; i+=2){
+      System.out.println("ROOMNAME" + i + ": "+clientHandler.user.roomInfo[i].roomName );
+      if(ClientHandler.user.roomInfo[i].roomName == null){
+          continue;
+      }
+      else{
+           System.out.println("modelAdd : "+ClientHandler.user.roomInfo[i].roomName);
+           model.addElement(ClientHandler.user.roomInfo[i].roomName);
+      }
+      jList1.setModel(model);
+      }
        // client1.sendData("COMMANDSTART:GETROOMLIST:NICKNAME:END");// TODO add your handling code here:
     }//GEN-LAST:event_QuitButtonMouseClicked
-
+ 
     private void MakeRoomButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MakeRoomButtonMouseClicked
         new InputRoomFrame().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_MakeRoomButtonMouseClicked
 
     private void EnterRoomButtonMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_EnterRoomButtonMouseClicked
         ClientHandler clientHandler = new ClientHandler();
-        System.out.println("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+"123"+":END");
-        clientHandler.client.sendData("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+"123"+":END");
+        System.out.println("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
+        clientHandler.client.sendData("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
         new CallFrame().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_EnterRoomButtonMouseClicked
 
@@ -242,7 +250,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
     private javax.swing.JLabel QuitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public static javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

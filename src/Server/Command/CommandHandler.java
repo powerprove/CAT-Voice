@@ -5,7 +5,8 @@ public class CommandHandler
 {
     public void CommandExecute(String data)
     {
-        System.out.println("DATA : "+ data);
+        if (!data.contains(":"))
+            return;
         String[] commandString = data.split(CommandInfo.splitCommand);
         Command command = findCommand(commandString);
         if (command != null)
@@ -34,6 +35,10 @@ public class CommandHandler
         else if (commandString[1].equals(CommandInfo.GetRoomList))
         {
             command = new GetRoomList(commandString);
+        }
+        else if (commandString[1].equals(CommandInfo.GetRoomMemberList))
+        {
+            command = new GetRoomMemberList(commandString);
         }
         return command;
     }
