@@ -37,6 +37,18 @@ public class ClientCommand
             myUser.roomcnt = roomCount;
 
        }
+       else if("GETROOMMEMBERLIST".equals(command[1])) { // COMMANDSTART:GETROOMMEMBERLIST:SERVER:방제목:사람수:사람닉네임:사람상태메시지:사람닉네임:사람상태메시지:END
+            int i;
+            for(i=0; i<myUser.roomcnt; i++){
+                if(myUser.roomInfo[i].roomName == command[3]) { //방 이름이 같다면 그방안에 값 저장
+                    int totalPeople = Integer.parseInt(command[4]);
+                    for(int j=0; j<totalPeople; j++) {
+                        myUser.roomInfo[i].otherName[j]=command[5+ j*2]; //5 7  9
+                        myUser.roomInfo[i].otherStausMSG[j] =command[6+ j*2];  //6 8 10
+                    }
+                }
+            }
+       }
     }
 
     public synchronized void Command(String data,User myUser)

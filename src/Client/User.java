@@ -1,7 +1,12 @@
 package Client;
+
+import java.io.IOException;
+
 class _roomInfo{
     String roomName;
     int headCount;
+    String[] otherName = new String[100];
+    String[] otherStausMSG = new String[100];
 }
 
 
@@ -50,6 +55,11 @@ public class User
         for(int i=0; i<100; i++){
             roomInfo[i] = new _roomInfo();
         }
+    }
+    
+    public void getRoomInfo(String roomName) throws IOException {
+        ClientHandler clientHandler = new ClientHandler();
+        clientHandler.client.sendData("COMMANDSTART:GETROOMMEMBERLIST:"+clientHandler.user.getNickName()+":"+roomName+":END");
     }
 
 }

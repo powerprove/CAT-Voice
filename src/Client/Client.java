@@ -56,12 +56,17 @@ public class Client {
         voiceOut = new DataOutputStream(socketCommand.clientVoiceSocket.getOutputStream());
         voiceIn = new DataInputStream(socketCommand.clientVoiceSocket.getInputStream());
     }
+    
+   public void startClient() throws IOException
+    {
+        startData();
+    }
 
     public void startCall() throws IOException
     {
         startData();
-        //startVoice();
-        sendData("COMMANDSTART:GETROOMLIST:"+myUser.getNickName()+":END");
+        startVoice();
+        //sendData("COMMANDSTART:GETROOMLIST:"+myUser.getNickName()+":END");
     }
 
     public void startVoice()
