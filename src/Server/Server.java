@@ -43,7 +43,6 @@ public class Server extends Thread
     // Waiting Client and accept
     public Socket AcceptSocket(ServerSocket server)
     {
-        System.out.println("[SERVER] WAITING CLIENT");
         Socket member = null;
         try
         {
@@ -57,7 +56,6 @@ public class Server extends Thread
 
     public synchronized void addMember(Socket member, Socket vmember) throws IOException
     {
-        System.out.println("[SERVER] INPUT => " + vmember.getInetAddress());
         Member client = new Member(member, vmember);
         memberManager.addMember(client);
     }
@@ -66,7 +64,9 @@ public class Server extends Thread
     {
         byte[] nickName = new byte[100];
         clientData.getInputStream().read(nickName, 0, 90);
-        Member member = MemberManager.getMember(Arrays.toString(nickName));
+        String nickNameString = new String(nickName).trim();
+        System.out.println(nickNameString);
+        Member member = MemberManager.getMember(nickNameString);
         if (member != null)
         {
             member.addVoiceList(clientVoice);
@@ -79,22 +79,19 @@ public class Server extends Thread
     {
         while (true)
         {
+            System.out.println("SEVER START");
             Socket member = AcceptSocket(serverSocket);
-            byte[] line = new byte[20];
-            System.out.println("[SERVER] INPUT => " + member.getInetAddress());
-
-            try {
-                member.getInputStream().read(line, 0, 20);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             Socket vmember = AcceptSocket(vserverSocket);
-            System.out.println("[SERVER] INPUT => " + vmember.getInetAddress());
+
             try {
-                if (Arrays.toString(line).equals("LOGIN"))
+                byte[] line = new byte[20];
+                member.getInputStream().read(line, 0, 15);
+                String command = new String(line).trim();
+                System.out.println(command);
+                if (command.equals("LOGIN")) {
                     addMember(member, vmember);
-                else if(Arrays.toString(line).equals("ADDLISTENSOCKET"))
+                }
+                else if(command.equals("ADDLISTENSOCKET"))
                     addListenSocket(member, vmember);
             } catch (IOException e) {
                 e.printStackTrace();

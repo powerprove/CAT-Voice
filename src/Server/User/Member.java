@@ -133,6 +133,7 @@ public class Member extends User
 
     public void addVoiceOut(DataOutputStream out)
     {
+        System.out.println("***********" + getNickName() + ":" + this.useSocket + "***********");
         int size = this.vlist.size();
         if (size >= this.useSocket)
             vreciever.add(new VoiceReciever(this.vlist.get(this.useSocket), out, this));
@@ -144,6 +145,7 @@ public class Member extends User
     {
         DataInputStream voiceInputStream = new DataInputStream(socket.getInputStream());
         this.vlist.add(voiceInputStream);
+        System.out.println(this.vlist.size());
     }
 
 

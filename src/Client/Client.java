@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 
@@ -50,10 +51,12 @@ public class Client {
     public void setSocketCommand() throws IOException
     {
         socketCommand = new ConnectCommand();
-        byte[] buf = "LOGIN".getBytes();
-        socketCommand.clientSocket.getOutputStream().write(buf);
-        //System.out.println(ip);
         socketCommand.execute(ip);
+        byte[] buf = "LOGIN".getBytes();
+        DataOutputStream out = new DataOutputStream(socketCommand.clientSocket.getOutputStream());
+        out.write(buf);
+        //System.out.println(ip);
+
     }
 
     public void setDataStream() throws IOException
@@ -85,8 +88,12 @@ public class Client {
     public void addVoiceReciever() throws IOException
     {
         SocketCommand command = new ConnectCommand();
+        command.execute(ip);
         byte[] buf = "ADDLISTENSOCKET".getBytes();
-        command.clientSocket.getOutputStream().write(buf);
+        DataOutputStream out = new DataOutputStream(command.clientSocket.getOutputStream());
+        out.write(buf);
+        out.flush();
+        out.write(getMyUserName().getBytes(StandardCharsets.UTF_8));
         voiceIn2 = new DataInputStream(command.clientVoiceSocket.getInputStream());
         voiceReciever.add(new VoiceReciever(voiceIn2));
     }
