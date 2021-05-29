@@ -112,7 +112,6 @@ public class Member extends User
     {
         return voiceIn;
     }
-
     public DataOutputStream getVoiceOut()
     {
         return voiceOut;
@@ -127,9 +126,13 @@ public class Member extends User
 
         reciever = new Reciever(dataIn, this);
         vreciever = new VoiceReciever(voiceIn, this);
-
-
     }
+
+    public void addvoiceOut(DataOutputStream out)
+    {
+        vreciever.setOut(out);
+    }
+
 
     public void recvData(String data)
     {

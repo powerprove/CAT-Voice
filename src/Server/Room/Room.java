@@ -21,8 +21,11 @@ public class Room
 
     public void addMember(Member member)
     {
+
         member.setRoom(this);
         member.setRoomId(room.size());
+        for (Member anotherMember : this.room)
+            anotherMember.addvoiceOut(member.getVoiceOut());
         room.add(member);
     }
 
@@ -30,7 +33,6 @@ public class Room
     {
         return this.room;
     }
-
     public Member getMember(int id)
     {
         return room.get(id);
