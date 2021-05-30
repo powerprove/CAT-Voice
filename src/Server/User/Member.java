@@ -154,7 +154,7 @@ public class Member extends User
         if (isNotice)
             RoomManager.sendNotice(data, count);
         else
-            room.sendVoice(data, roomId, count);
+            room.sendVoice(data, count);
     }
 
     public void sendVoice(byte[] data, int count)
