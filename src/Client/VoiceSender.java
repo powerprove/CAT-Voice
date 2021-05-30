@@ -43,6 +43,7 @@ public class VoiceSender extends Thread
         try {
             mic = AudioSystem.getTargetDataLine(format);
             mic.open(format);
+
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
