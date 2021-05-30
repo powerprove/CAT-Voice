@@ -187,7 +187,8 @@ public class LoginFrame extends javax.swing.JFrame {
 
        ClientHandler clientHandler = new ClientHandler();
        clientHandler.createHandler();
-       clientHandler.client.sendData("COMMANDSTART:LOGIN:"+name.getText()+":END");
+       clientHandler.client.sendData("COMMANDSTART:LOGIN:"+name.getText()+":"+profile.getText()+":END");
+       System.out.println("COMMANDSTART:LOGIN:"+name.getText()+":"+profile.getText()+":END");
      //  Client client1 = new Client(user1, ipaddr.getText());
        // System.out.println("COMMANDSTART:LOGIN:"+name.getText()+":END");
         //client1.sendData();

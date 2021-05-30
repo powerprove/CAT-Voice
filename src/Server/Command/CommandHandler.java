@@ -5,6 +5,7 @@ public class CommandHandler
 {
     public void CommandExecute(String data)
     {
+        System.out.println(data);
         if (!data.contains(":"))
             return;
         String[] commandString = data.split(CommandInfo.splitCommand);

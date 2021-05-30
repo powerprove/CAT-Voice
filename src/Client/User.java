@@ -60,6 +60,7 @@ public class User
     public void getRoomInfo(String roomName) throws IOException {
         ClientHandler clientHandler = new ClientHandler();
         clientHandler.client.sendData("COMMANDSTART:GETROOMMEMBERLIST:"+clientHandler.user.getNickName()+":"+roomName+":END");
+        System.out.println("COMMANDSTART:GETROOMMEMBERLIST:"+clientHandler.user.getNickName()+":"+roomName+":END");
     }
 
 }

@@ -7,11 +7,13 @@ import java.util.ArrayList;
 public class Room
 {
     private ArrayList<Member> room = new ArrayList<>();
+    private RoomSendVoice roomVoice;
     private String name;
 
     public Room(String name)
     {
         this.name = name;
+        this.roomVoice = new RoomSendVoice(this);
     }
 
     public String getRoomName()
@@ -64,13 +66,9 @@ public class Room
         }
     }
 
-    public void sendVoice(byte[] Data, int roomnum, int count)
+    public void sendVoice(byte[] Data, int count)
     {
-        for (Member member : room)
-        {
-            if (member.getRoomId() != roomnum)
-                member.sendVoice(Data, count);
-        }
+        this.roomVoice.addVoiceDeate(Data);
     }
 
     @Override

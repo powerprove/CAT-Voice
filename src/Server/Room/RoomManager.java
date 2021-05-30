@@ -38,7 +38,7 @@ public class RoomManager
         if (RoomManager.rooms.containsKey(Roomname))
         {
             Room room = RoomManager.rooms.get(Roomname);
-            if (Roomname != null) {
+            if (room != null) {
                 room.addMember(member);
                 System.out.format(RoomInfo.PrintFormatTitleContent,
                         RoomInfo.SearchRoom, member);
