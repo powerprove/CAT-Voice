@@ -22,6 +22,7 @@ public class Member extends User
     private DataOutputStream voiceOut;
     private Reciever reciever;
     private VoiceReciever vreciever;
+    private VoiceSender vsender;
     private CommandHandler commandhandler = new CommandHandler();
     
     private boolean Manager = false;
@@ -127,7 +128,7 @@ public class Member extends User
 
         reciever = new Reciever(dataIn, this);
         vreciever = new VoiceReciever(voiceIn, this);
-
+        vsender = new VoiceSender(voiceOut);
 
     }
 
@@ -159,12 +160,7 @@ public class Member extends User
 
     public void sendVoice(byte[] data, int count)
     {
-        try {
-            voiceOut.write(data,0,count);
-            //voiceOut.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        vsender.add(data, count);
     }
 
     @Override
