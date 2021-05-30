@@ -48,7 +48,7 @@ public class Member extends User
             this.setNickname(nickname2[2]);
             this.setStatusMessage(nickname2[3]);
             System.out.println("CREATE MEMBER => " + nickname2[2]);
-            System.out.println("CREATE MEMBER STATUS => " + nickname2[3]);
+            //System.out.println("CREATE MEMBER STATUS => " + nickname2[3]);
         }
     }
 
