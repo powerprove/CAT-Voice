@@ -22,6 +22,7 @@ public class Member extends User
     private DataOutputStream voiceOut;
     private Reciever reciever;
     private VoiceReciever vreciever;
+    private VoiceSender vsender;
     private CommandHandler commandhandler = new CommandHandler();
     
     private boolean Manager = false;
@@ -48,7 +49,7 @@ public class Member extends User
             this.setNickname(nickname2[2]);
             this.setStatusMessage(nickname2[3]);
             System.out.println("CREATE MEMBER => " + nickname2[2]);
-            System.out.println("CREATE MEMBER STATUS => " + nickname2[3]);
+            //System.out.println("CREATE MEMBER STATUS => " + nickname2[3]);
         }
     }
 
@@ -127,7 +128,7 @@ public class Member extends User
 
         reciever = new Reciever(dataIn, this);
         vreciever = new VoiceReciever(voiceIn, this);
-
+        vsender = new VoiceSender(voiceOut);
 
     }
 
@@ -154,17 +155,12 @@ public class Member extends User
         if (isNotice)
             RoomManager.sendNotice(data, count);
         else
-            room.sendVoice(data, roomId, count);
+            room.sendVoice(data, count, this);
     }
 
     public void sendVoice(byte[] data, int count)
     {
-        try {
-            voiceOut.write(data,0,count);
-            //voiceOut.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        vsender.add(data, count);
     }
 
     @Override

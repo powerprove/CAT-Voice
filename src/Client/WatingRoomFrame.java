@@ -43,6 +43,8 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 
     }
     
+
+    
     
 
     /**
@@ -201,7 +203,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
         System.out.println("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
         clientHandler.client.sendData("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
         clientHandler.user.getRoomInfo(jList1.getSelectedValue());
-        new CallFrame().setVisible(true);// TODO add your handling code here:
+        //new CallFrame().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_EnterRoomButtonMouseClicked
 
     /**

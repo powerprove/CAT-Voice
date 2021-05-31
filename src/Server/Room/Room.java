@@ -64,13 +64,17 @@ public class Room
         }
     }
 
-    public void sendVoice(byte[] Data, int roomnum, int count)
+    public void sendVoice(byte[] Data, int count)
     {
-        for (Member member : room)
-        {
-            if (member.getRoomId() != roomnum)
+        for (Member member : this.room)
+            member.sendVoice(Data, count);
+    }
+
+    public void sendVoice(byte[] Data, int count, Member mine)
+    {
+        for (Member member : this.room)
+            if (member != mine)
                 member.sendVoice(Data, count);
-        }
     }
 
     @Override
