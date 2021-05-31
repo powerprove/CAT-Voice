@@ -198,6 +198,7 @@ public class WatingRoomFrame extends javax.swing.JFrame {
 
     private void EnterRoomButtonMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_EnterRoomButtonMouseClicked
         ClientHandler clientHandler = new ClientHandler();
+        //// COMMANDSTART:INROOM:아이디(nickname):닉네임:상태메시지:ROOM이름:END
         System.out.println("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
         clientHandler.client.sendData("COMMANDSTART:"+"INROOM:"+clientHandler.user.getNickName()+":"+clientHandler.user.getNickName()+":"+clientHandler.user.getStatusMessage()+":"+jList1.getSelectedValue()+":END");
         clientHandler.user.getRoomInfo(jList1.getSelectedValue());

@@ -23,7 +23,8 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new LoginFrame().setVisible(true);       
+
+        new LoginFrame().setVisible(true);
     }
     
 }

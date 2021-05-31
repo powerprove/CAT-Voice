@@ -111,7 +111,9 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
+            //COMMANDSTART:SETMYSTATUS:아이디(nickname):룸제목:상메:END
+            sendData("COMMANDSTART:SETMYSTATUS:"+myUser.getNickName()+":null:"+Status+":END"); /////////////// --- 추ㅏㄱ-------------
+            //sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
             //sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
             e.printStackTrace();

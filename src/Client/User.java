@@ -1,6 +1,7 @@
 package Client;
 
 import java.io.IOException;
+import java.util.Vector;
 
 class _roomInfo{
     String roomName;
@@ -12,9 +13,12 @@ class _roomInfo{
 
 public class User
 {
+    static Vector<String> roomUserName = new Vector<String>();
+    static Vector<String> roomUserMSG = new Vector<String>();
     _roomInfo[] roomInfo = new _roomInfo[100];
-    String[] roomUserName = new String[101];
-    String[] roomUserMSG = new String[101];
+    //String[] roomUserName = new String[101];
+    //String[] roomUserMSG = new String[101];
+    static int roomUserIdx = 0;
 
     int roomid;
     static int roomcnt=0;

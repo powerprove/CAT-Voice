@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class ListenCommand extends SocketCommand
 {
-
+    // 무 쓸모인듯~!!!!!!!!!!!!!!!!!!!!!!!!
     ListenCommand()
     {
         try {
