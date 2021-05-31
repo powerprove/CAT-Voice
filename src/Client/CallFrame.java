@@ -165,7 +165,10 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/공지응답기.png"))); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+	try{
                 jLabel17MouseClicked(evt);
+	}
+	catch(IOException e){}
             }
         });
 
@@ -447,8 +450,16 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel14.setText(clientHandler.user.roomUserMSG.get(2));
     }//GEN-LAST:event_userPhoto1MouseClicked
 
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-        new MegaphoneFrame().setVisible(true);// TODO add your handling code here:
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) throws IOException{//GEN-FIRST:event_jLabel17MouseClicked
+        ClientHandler clientHandler = new ClientHandler();
+        if(LoginFrame.name.getText().equals(clientHandler.user.roomUserName.get(0))){
+            new MegaphoneFrame().setVisible(true);
+            clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");
+        }
+        else{
+            System.out.println("You're Not Admin");
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel17MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
