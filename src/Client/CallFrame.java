@@ -23,14 +23,30 @@ public class CallFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public CallFrame() {
+    public CallFrame() { 
         initComponents();
         jLabel18.setText(LoginFrame.profile.getText());
         ClientHandler clientHandler = new ClientHandler();
-        
-        //username1.setVisible(false);
-        //userPhoto1.setVisible(false);
-        //userMic1.setVisible(false);
+        if(clientHandler.RoomTotalpeople == 1){
+        username1.setVisible(false);
+        userPhoto1.setVisible(false);
+        userMic1.setVisible(false);   
+        username2.setVisible(false);
+        userPhoto2.setVisible(false);
+        userMic2.setVisible(false);     
+        username3.setVisible(false);
+        userPhoto3.setVisible(false);
+        userMic3.setVisible(false);
+        username4.setVisible(false);
+        userPhoto4.setVisible(false);
+        userMic4.setVisible(false);   
+        }
+        else if(clientHandler.RoomTotalpeople == 2){
+        System.out.println("COME 2");
+            for(int i = 0; i < clientHandler.user.roomUserName.size(); i++){
+                System.out.println("roomUsername NUM : " + i + " and NAME : " +clientHandler.user.roomUserName.get(i));
+            }
+        username1.setText(clientHandler.user.roomUserName.get(2));
         username2.setVisible(false);
         userPhoto2.setVisible(false);
         userMic2.setVisible(false);     
@@ -40,9 +56,24 @@ public class CallFrame extends javax.swing.JFrame {
         username4.setVisible(false);
         userPhoto4.setVisible(false);
         userMic4.setVisible(false);
-        
-                
-        
+        }
+        else if(clientHandler.RoomTotalpeople == 3){  
+        username3.setVisible(false);
+        userPhoto3.setVisible(false);
+        userMic3.setVisible(false);
+        username4.setVisible(false);
+        userPhoto4.setVisible(false);
+        userMic4.setVisible(false);
+        }
+        else{  
+        username4.setVisible(false);
+        userPhoto4.setVisible(false);
+        userMic4.setVisible(false);
+        }       
+    }
+    
+     public void ExitFrame(){
+         this.dispose();
     }
 // COMMANDSTART:GETROOMMEMBERLIST:SERVER:방제목:사람수:사람닉네임:사람상태메시지:사람닉네임:사람상태메시지:END
     /**
@@ -116,7 +147,7 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/리스트.png"))); // NOI18N
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("상태메세지");
+        jLabel14.setText(".상대방의 프로필을 클릭하여 확인하세요");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/큰프로필.png"))); // NOI18N
 
@@ -366,7 +397,6 @@ public class CallFrame extends javax.swing.JFrame {
                 .addGap(297, 297, 297)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel16)
                         .addGap(100, 100, 100))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -412,8 +442,9 @@ public class CallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userPhoto2MouseClicked
 
     private void userPhoto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPhoto1MouseClicked
-        jLabel9.setText("받아온 이름 1");// TODO add your handling code here:
-        jLabel14.setText("받아온 프로필 1");
+        ClientHandler clientHandler = new ClientHandler();
+        jLabel9.setText(clientHandler.user.roomUserName.get(2));// TODO add your handling code here:
+        jLabel14.setText(clientHandler.user.roomUserMSG.get(2));
     }//GEN-LAST:event_userPhoto1MouseClicked
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
@@ -446,9 +477,9 @@ public class CallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        String resultStr = null;
-        resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
-        clientUser1.setMyUserStatus(resultStr);
+        //String resultStr = null;
+        //resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
+        //clientUser1.setMyUserStatus(resultStr);
         //setStatusLabel(resultStr);
     }//GEN-LAST:event_jLabel5MouseClicked
 

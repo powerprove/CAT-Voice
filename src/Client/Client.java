@@ -101,7 +101,9 @@ public class Client {
     {
         return myUser.getNickName();
     }
+    
     public int getMyUserRoomid(){ return myUser.getRoomid(); }
+
     public String getMyUserStatus()
     {
         return myUser.getStatusMessage();
@@ -111,17 +113,12 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            //COMMANDSTART:SETMYSTATUS:아이디(nickname):룸제목:상메:END
+ //           sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
             sendData("COMMANDSTART:SETMYSTATUS:"+myUser.getNickName()+":null:"+Status+":END"); /////////////// --- 추ㅏㄱ-------------
-            //sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
             //sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void getRoomInfo(String roomName) throws IOException {
-        sendData("COMMANDSTART:GETROOMMEMBERLIST:"+myUser.getNickName()+":"+roomName+":END");
     }
 
     public String getAnotherUserName()

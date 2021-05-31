@@ -96,7 +96,7 @@ public class InputRoomFrame extends javax.swing.JFrame {
         ClientHandler clientHandler = new ClientHandler();
         MakeRoomEvent MakeRoomEvent1 = new MakeRoomEvent(RoomName.getText());
         MakeRoomEvent1.sendMakeRoomData();
-        ClientHandler.user.roomcnt += 2;
+        ClientHandler.user.roomcnt += 1;
        /* for(int i = 0; i < User1.roomcnt; i++){
             vec.addElement(User1.roomInfo[i].roomName);
             System.out.println(User1.roomInfo[i].roomName);
