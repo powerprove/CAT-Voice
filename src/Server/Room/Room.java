@@ -70,6 +70,13 @@ public class Room
             member.sendVoice(Data, count);
     }
 
+    public void sendVoice(byte[] Data, int count, Member mine)
+    {
+        for (Member member : this.room)
+            if (member != mine)
+                member.sendVoice(Data, count);
+    }
+
     @Override
     public boolean equals(Object target)
     {

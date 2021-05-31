@@ -29,13 +29,13 @@ public class VoiceSender extends Thread
     {
         while (true)
         {
-            try {
-                sleep(30);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (dataq.isEmpty()) {
+                try {
+                    sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            if (dataq.isEmpty())
-                continue;
             if (countq.isEmpty())
                 continue;
 
@@ -48,9 +48,10 @@ public class VoiceSender extends Thread
                 e.printStackTrace();
             }
 
-            if (dataq.size() > 20)
+            if (dataq.size() > 20 && countq.size() > 20)
             {
                 dataq.clear();
+                countq.clear();
             }
 
         }
