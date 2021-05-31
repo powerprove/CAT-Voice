@@ -207,6 +207,7 @@ public class MegaphoneFrame extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) throws IOException{//GEN-FIRST:event_jLabel2MouseClicked
         ClientHandler clientHandler = new ClientHandler();
         clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");
+        dispose();
             // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
 

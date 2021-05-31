@@ -150,7 +150,7 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/리스트.png"))); // NOI18N
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText(".상대방의 프로필을 클릭하여 확인하세요");
+        jLabel14.setText("상대방의 프로필을 클릭하여 확인하세요");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/큰프로필.png"))); // NOI18N
 
@@ -402,13 +402,11 @@ public class CallFrame extends javax.swing.JFrame {
                     .addComponent(userMic1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(297, 297, 297)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(100, 100, 100))
+                    .addComponent(jLabel16)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -468,22 +466,19 @@ public class CallFrame extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         try{
             setSpeaker1();
-            if ( clientUser1 == null )
-            {
                 ClientHandler clientHandler = new ClientHandler();
                 clientHandler.client.startCall();
                 //clientHandler.client.sendData("COMMAND:ARGV:ARGV:ARGV:END");
-                clientHandler.client.callCheck();
-                clientHandler.client.setCallFrame(this);
+                //clientHandler.client.callCheck();
+                //clientHandler.client.setCallFrame(this);
 
-                setStatusLabel(clientHandler.client.getAnotherUserStatus());
-                setName(clientHandler.client.getAnotherUserName());
+                //setStatusLabel(clientHandler.client.getAnotherUserStatus());
+                //setName(clientHandler.client.getAnotherUserName());
 
-                System.out.println(clientHandler.client.getAnotherUserName());
-                System.out.println(clientHandler.client.getIP());
-                System.out.println(clientHandler.client.getMyUserStatus());
-                System.out.println(clientHandler.client.getAnotherUserStatus());
-            }
+                //System.out.println(clientHandler.client.getAnotherUserName());
+                //System.out.println(clientHandler.client.getIP());
+                //System.out.println(clientHandler.client.getMyUserStatus());
+//                System.out.println(clientHandler.client.getAnotherUserStatus());
         }
         catch (IOException ex) {
             Logger.getLogger(CallFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -491,14 +486,15 @@ public class CallFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        //String resultStr = null;
-        //resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
-        //clientUser1.setMyUserStatus(resultStr);
-        //setStatusLabel(resultStr);
+       ClientHandler clientHandler = new ClientHandler();
+       String resultStr = null;
+       resultStr = JOptionPane.showInputDialog("상태메세지를 변경할 부분을 적어주세요");
+       clientHandler.client.setMyUserStatus(resultStr);
+       setStatusLabel(resultStr);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     public void setStatusLabel(String StatusLabel){
-        jLabel14.setText(StatusLabel);
+        jLabel18.setText(StatusLabel);
     }
     
     public void setName(String name){
