@@ -28,6 +28,9 @@ public class CallFrame extends javax.swing.JFrame {
         jLabel18.setText(LoginFrame.profile.getText());
         ClientHandler clientHandler = new ClientHandler();
         if(clientHandler.RoomTotalpeople == 1){
+        for(int i = 0; i < clientHandler.user.roomUserName.size(); i++){
+                System.out.println("roomUsername NUM : " + i + " and NAME : " +clientHandler.user.roomUserName.get(i));
+        }
         username1.setVisible(false);
         userPhoto1.setVisible(false);
         userMic1.setVisible(false);   
@@ -45,8 +48,8 @@ public class CallFrame extends javax.swing.JFrame {
         System.out.println("COME 2");
             for(int i = 0; i < clientHandler.user.roomUserName.size(); i++){
                 System.out.println("roomUsername NUM : " + i + " and NAME : " +clientHandler.user.roomUserName.get(i));
-            }
-        username1.setText(clientHandler.user.roomUserName.get(2));
+        }
+        username1.setText(clientHandler.user.roomUserName.get(0));
         username2.setVisible(false);
         userPhoto2.setVisible(false);
         userMic2.setVisible(false);     
@@ -446,8 +449,8 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void userPhoto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userPhoto1MouseClicked
         ClientHandler clientHandler = new ClientHandler();
-        jLabel9.setText(clientHandler.user.roomUserName.get(2));// TODO add your handling code here:
-        jLabel14.setText(clientHandler.user.roomUserMSG.get(2));
+        jLabel9.setText(clientHandler.user.roomUserName.get(0));// TODO add your handling code here:
+        jLabel14.setText(clientHandler.user.roomUserMSG.get(0));
     }//GEN-LAST:event_userPhoto1MouseClicked
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) throws IOException{//GEN-FIRST:event_jLabel17MouseClicked
