@@ -153,9 +153,9 @@ public class Member extends User
 
     public void recvVoice(byte[] data, int count)
     {
-        if (isManager())
+        if (this.isNotice)
         {
-            if (this.isNotice)
+            if (isManager())
                 RoomManager.sendNotice(data, count);
             else
                 sendManager(data, count);
