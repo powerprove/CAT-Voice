@@ -6,11 +6,15 @@ import java.util.HashSet;
 public class MemberManager
 {
     private static HashMap<String, Member> members = new HashMap<>();
+    private static Member manager;
 
     public void addMember(Member member)
     {
-        if (members.isEmpty())
+        if (members.isEmpty()) {
             member.setManageer();
+            this.manager = member;
+            System.out.println("MEMBER NICKNAME : "+member.getNickName());
+        }
         if (!MemberManager.members.containsKey(member.getNickName()))
             MemberManager.members.put(member.getNickName(), member);
     }
@@ -22,5 +26,10 @@ public class MemberManager
         if (MemberManager.members.containsKey(nickName))
             member = MemberManager.members.get(nickName);
         return member;
+    }
+
+    public static Member getManager()
+    {
+        return manager;
     }
 }

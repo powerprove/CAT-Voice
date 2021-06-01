@@ -2,6 +2,7 @@ package Server.Room;
 
 import Server.Command.CommandInfo;
 import Server.User.Member;
+import Server.User.MemberManager;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -71,11 +72,11 @@ public class RoomManager
         for (Entry<String, Room> entry : RoomManager.rooms.entrySet()) {
             Room room = entry.getValue();
             for (Member member : room.getMembers()) {
+                    System.out.println("sendNotice" + member.getNickName());
                     member.sendVoice(Data, count);
             }
         }
     }
-
 
 
 }

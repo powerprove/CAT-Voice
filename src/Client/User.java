@@ -1,6 +1,8 @@
 package Client;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Vector;
 
 class _roomInfo{
@@ -17,6 +19,7 @@ public class User
     _roomInfo[] roomInfo = new _roomInfo[100];
     static Vector<String> roomUserName = new Vector<String>();
     static Vector<String> roomUserMSG = new Vector<String>();
+    static Queue<String> SpeakerMark = new LinkedList<>();
     int roomUserIdx = clienthandler.RoomTotalpeople;
 
     int roomid;

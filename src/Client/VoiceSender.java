@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import Client.LoginFrame;
 
 public class VoiceSender extends Thread
 {
@@ -52,6 +53,7 @@ public class VoiceSender extends Thread
 
         byte[] bytes = new byte[(int) (mic.getFormat().getSampleRate()*0.4)];
         System.out.println(bytes);
+        ClientHandler clientHandler = new ClientHandler();
         while (running) //동기화
         {
             int count = mic.read(bytes, 0, bytes.length);
@@ -65,9 +67,21 @@ public class VoiceSender extends Thread
 //                    System.out.print("MIC FrameRAte: " +  mic.getFormat().getFrameRate());
 //                    System.out.print("MIC Framesize: " +  mic.getFormat().getFrameSize());
 //                    System.out.print("MIC Samplesizeinbits: " +  mic.getFormat().getSampleSizeInBits());
-                    out.write(bytes,0,count); //
-             //       System.out.println(clientCommand.client.getMyUserName());
-
+                      
+                       out.write(bytes,0,count);
+                      if(bytes[0] + bytes[1] + bytes[2] < 3 && bytes[0] + bytes[1] + bytes[2] > -3 ){
+                          continue;
+                      }
+                      else{
+                          clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");
+                          //out.write(bytes,0,count);
+                      }
+                    System.out.println(clientCommand.client.getMyUserName());
+               /*     int VoiceSum = 0;
+                    for(int i=0; i<bytes.length; i++)
+                        VoiceSum +=bytes[i];
+                    System.out.println("VOICE SUM : " + VoiceSum);
+*/
                     chk = false; // add
                 } catch (IOException e) {
                     e.printStackTrace();

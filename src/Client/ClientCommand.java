@@ -17,12 +17,13 @@ public class ClientCommand
        if("USERROOMID".equals(command[1])){
             myUser.roomid = Integer.parseInt(command[2]);
         }
-        else if("INROOMUSER".equals(command[1])){ // another User info Save
+        else if("INROOMUSER".equals(command[1])){ // another User info Save   
            myUser.roomUserName.add(command[2]); // --추가
            myUser.roomUserMSG.add(command[3]); // --추가
            myUser.roomUserIdx +=1;
            ClientHandler clienthandler = new ClientHandler();
            clienthandler.RoomTotalpeople += 1;
+           //if(clienthandler.RoomTotalpeople )
            System.out.println("RoomTotalPeople:" + clienthandler.RoomTotalpeople);
            System.out.println("roomUSerIDX" + myUser.roomUserIdx);
            CallFrame callFrame = new CallFrame();
@@ -41,6 +42,7 @@ public class ClientCommand
             //COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END//
            int roomCount = Integer.parseInt(command[3]);
             for(int i=0; i<roomCount; i++){
+                System.out.println("Fix To NULL :" + command[4+i*2]);
                 myUser.roomInfo[i].roomName = command[4+i*2];
                 System.out.println("command : " + command[4+i*2]);
                 myUser.roomInfo[i].headCount = Integer.parseInt(command[5+i*2]);
@@ -69,6 +71,11 @@ public class ClientCommand
                     }
                 }
             }
+       }
+       else if("SETNOTICE".equals(command[1])){
+        //COMMANDSTART:SETNOTICE:SERVER:방이름:아이디:END
+           myUser.SpeakerMark.add(command[4]);
+           System.out.println(myUser.SpeakerMark.peek());
        }
     }
 
