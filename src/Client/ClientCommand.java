@@ -70,6 +70,10 @@ public class ClientCommand
                 }
             }
        }
+       else if("SETNOTICE".equals(command[1])){
+        //COMMANDSTART:SETNOTICE:SERVER:방이름:아이디:END
+           myUser.SpeakerMark.add(command[4]);
+       }
     }
 
     public synchronized void Command(String data,User myUser)

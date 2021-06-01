@@ -50,12 +50,13 @@ public class VoiceSender extends Thread
         System.out.println("Start recording");
         mic.start();
 
+
         byte[] bytes = new byte[(int) (mic.getFormat().getSampleRate()*0.4)];
         System.out.println(bytes);
         while (running) //동기화
         {
             int count = mic.read(bytes, 0, bytes.length);
-            //
+
             if(count>0)
             {
                 try {
@@ -66,8 +67,12 @@ public class VoiceSender extends Thread
 //                    System.out.print("MIC Framesize: " +  mic.getFormat().getFrameSize());
 //                    System.out.print("MIC Samplesizeinbits: " +  mic.getFormat().getSampleSizeInBits());
                     out.write(bytes,0,count); //
+                    System.out.println(bytes[0]);
              //       System.out.println(clientCommand.client.getMyUserName());
-
+                    int VoiceSum = 0;
+                    for(int i=0; i<bytes.length; i++)
+                        VoiceSum +=bytes[i];
+                    System.out.println(VoiceSum);
                     chk = false; // add
                 } catch (IOException e) {
                     e.printStackTrace();
