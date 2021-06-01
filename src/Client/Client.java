@@ -101,7 +101,9 @@ public class Client {
     {
         return myUser.getNickName();
     }
+    
     public int getMyUserRoomid(){ return myUser.getRoomid(); }
+
     public String getMyUserStatus()
     {
         return myUser.getStatusMessage();
@@ -111,7 +113,8 @@ public class Client {
     {
         myUser.setStatusMessage(Status);
         try {
-            sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
+ //           sendData("COMMANDSTART:" +"SETMYSTATUS:"+myUser.getNickName()+":"+ Status+ ":END");
+            sendData("COMMANDSTART:SETMYSTATUS:"+myUser.getNickName()+":null:"+Status+":END"); /////////////// --- 추ㅏㄱ-------------
             //sendData("COMMANDSTART:" +"SETMYSTATUS:"+ myUser.getRoomid() + ":END");
         } catch (IOException e) {
             e.printStackTrace();
