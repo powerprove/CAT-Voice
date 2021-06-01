@@ -10,7 +10,7 @@ public class SetNotice implements Command
 
     public SetNotice(String[] args)
     {
-        if ((args.length == CommandInfo.DeleteRoomArgs))
+        if ((args.length == CommandInfo.SetNoticeArgv))
         {
             this.Name = args[2];
             sw = true;
