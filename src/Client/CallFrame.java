@@ -31,9 +31,6 @@ public class CallFrame extends javax.swing.JFrame{
         jLabel18.setText(LoginFrame.profile.getText());
         ClientHandler clientHandler = new ClientHandler();
         if(clientHandler.RoomTotalpeople == 1){
-        for(int i = 0; i < clientHandler.user.roomUserName.size(); i++){
-                System.out.println("roomUsername NUM : " + i + " and NAME : " +clientHandler.user.roomUserName.get(i));
-        }
         username1.setVisible(false);
         userPhoto1.setVisible(false);
         userMic1.setVisible(false);   
@@ -48,10 +45,6 @@ public class CallFrame extends javax.swing.JFrame{
         userMic4.setVisible(false);   
         }
         else if(clientHandler.RoomTotalpeople == 2){
-        System.out.println("COME 2");
-            for(int i = 0; i < clientHandler.user.roomUserName.size(); i++){
-                System.out.println("roomUsername NUM : " + i + " and NAME : " +clientHandler.user.roomUserName.get(i));
-        }
         username1.setText(clientHandler.user.roomUserName.get(0));
         username2.setVisible(false);
         userPhoto2.setVisible(false);
@@ -458,8 +451,6 @@ public class CallFrame extends javax.swing.JFrame{
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) throws IOException{//GEN-FIRST:event_jLabel17MouseClicked
         ClientHandler clientHandler = new ClientHandler();
-        System.out.println("LOgin NAME : " + LoginFrame.name.getText());
-        System.out.println("ClientID : " + clientHandler.user.roomUserName.get(0));
         if(LoginFrame.name.getText().equals(clientHandler.user.roomUserName.get(0))){
             new MegaphoneFrame().setVisible(true);
             clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");
@@ -475,17 +466,6 @@ public class CallFrame extends javax.swing.JFrame{
             setSpeaker1();
                 ClientHandler clientHandler = new ClientHandler();
                 clientHandler.client.startCall();
-                //clientHandler.client.sendData("COMMAND:ARGV:ARGV:ARGV:END");
-                //clientHandler.client.callCheck();
-                //clientHandler.client.setCallFrame(this);
-
-                //setStatusLabel(clientHandler.client.getAnotherUserStatus());
-                //setName(clientHandler.client.getAnotherUserName());
-
-                //System.out.println(clientHandler.client.getAnotherUserName());
-                //System.out.println(clientHandler.client.getIP());
-                //System.out.println(clientHandler.client.getMyUserStatus());
-//                System.out.println(clientHandler.client.getAnotherUserStatus());
         }
         catch (IOException ex) {
             Logger.getLogger(CallFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -592,17 +572,17 @@ public class CallFrame extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton userMic1;
-    private javax.swing.JButton userMic2;
-    private javax.swing.JButton userMic3;
-    private javax.swing.JButton userMic4;
-    private javax.swing.JLabel userPhoto1;
-    private javax.swing.JLabel userPhoto2;
-    private javax.swing.JLabel userPhoto3;
-    private javax.swing.JLabel userPhoto4;
-    private javax.swing.JLabel username1;
-    private javax.swing.JLabel username2;
-    private javax.swing.JLabel username3;
-    private javax.swing.JLabel username4;
+    public static javax.swing.JButton userMic1;
+    public static javax.swing.JButton userMic2;
+    public static javax.swing.JButton userMic3;
+    public static javax.swing.JButton userMic4;
+    public static javax.swing.JLabel userPhoto1;
+    public static javax.swing.JLabel userPhoto2;
+    public static javax.swing.JLabel userPhoto3;
+    public static javax.swing.JLabel userPhoto4;
+    public static javax.swing.JLabel username1;
+    public static javax.swing.JLabel username2;
+    public static javax.swing.JLabel username3;
+    public static javax.swing.JLabel username4;
     // End of variables declaration//GEN-END:variables
 }

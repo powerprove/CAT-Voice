@@ -24,8 +24,6 @@ public class ClientCommand
            ClientHandler clienthandler = new ClientHandler();
            clienthandler.RoomTotalpeople += 1;
            //if(clienthandler.RoomTotalpeople )
-           System.out.println("RoomTotalPeople:" + clienthandler.RoomTotalpeople);
-           System.out.println("roomUSerIDX" + myUser.roomUserIdx);
            CallFrame callFrame = new CallFrame();
            callFrame.dispose();
            callFrame.setVisible(true);
@@ -42,9 +40,7 @@ public class ClientCommand
             //COMMANDSTART:GETROOMLIST:SERVER:방개수:방이름:방인원수:방이름:방인원수:END//
            int roomCount = Integer.parseInt(command[3]);
             for(int i=0; i<roomCount; i++){
-                System.out.println("Fix To NULL :" + command[4+i*2]);
                 myUser.roomInfo[i].roomName = command[4+i*2];
-                System.out.println("command : " + command[4+i*2]);
                 myUser.roomInfo[i].headCount = Integer.parseInt(command[5+i*2]);
             }
             myUser.roomcnt = roomCount;
@@ -52,12 +48,8 @@ public class ClientCommand
        else if("GETROOMMEMBERLIST".equals(command[1])) {
             ClientHandler clienthandler = new ClientHandler();
             int i;
-            System.out.println("myUser.roomcnt : " + myUser.roomcnt);
-            System.out.println("command3 : " + command[3]);
-            System.out.println("roomName 0 : "+ myUser.roomInfo[0].roomName);
             for(i=0; i<myUser.roomcnt; i++){
                 if(myUser.roomInfo[i].roomName.equals(command[3])) { //방 이름이 같다면 그방안에 값 저장
-                    System.out.println("command4 : " + Integer.parseInt(command[4]));
                     int totalPeople = Integer.parseInt(command[4]);
                     clienthandler.RoomTotalpeople = Integer.parseInt(command[4]);
                     for(int j=0; j<totalPeople; j++) {
@@ -65,23 +57,14 @@ public class ClientCommand
                        // myUser.roomInfo[i].otherStausMSG[j] =command[6+ j*2];  //6 8 10
                         myUser.roomUserName.add(command[5+ j*2]); // --추가
                         myUser.roomUserMSG.add(command[6+ j*2]); // -- 추가
-                        System.out.println("TotalPeople " + totalPeople);
-                        System.out.println("Coomand OtherName " + command[5+ j*2]);
-                        System.out.println("Coomand otherStatusMSG " + command[6+ j*2]);
                     }
                 }
             }
-       }
-       else if("SETNOTICE".equals(command[1])){
-        //COMMANDSTART:SETNOTICE:SERVER:방이름:아이디:END
-           myUser.SpeakerMark.add(command[4]);
-           System.out.println(myUser.SpeakerMark.peek());
        }
     }
 
     public synchronized void Command(String data,User myUser)
     {
-        System.out.println("data : "+data);
         if (data.contains(":")){
         String[] command = data.split(":");
         CommandArgv2(command,myUser);

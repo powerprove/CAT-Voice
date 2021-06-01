@@ -31,9 +31,7 @@ public class Reciever extends Thread
         {
             try
             {
-                //System.out.println("RECV");
                 String Data = in.readUTF();
-                //System.out.print("Data");
                 member.recvData(Data);
             }
             catch (IOException e)
