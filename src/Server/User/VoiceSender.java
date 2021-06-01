@@ -32,6 +32,7 @@ public class VoiceSender extends Thread
             if (dataq.isEmpty()) {
                 try {
                     sleep(30);
+                    continue;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
