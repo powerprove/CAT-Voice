@@ -155,10 +155,14 @@ public class Member extends User
     {
         if (isManager())
         {
-            if (this.isNotice)
+            System.out.println("recvVoiceIF");
+            if (this.isNotice){
                 RoomManager.sendNotice(data, count);
-            else
+                System.out.println("recvVoiceNOTICEIF");
+            }
+            else{
                 sendManager(data, count);
+            }
         }
         else
             room.sendVoice(data, count, this);

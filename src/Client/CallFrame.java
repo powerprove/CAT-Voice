@@ -18,7 +18,10 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class CallFrame extends javax.swing.JFrame {
+
+
+
+public class CallFrame extends javax.swing.JFrame{
 
     /**
      * Creates new form NewJFrame
@@ -78,6 +81,8 @@ public class CallFrame extends javax.swing.JFrame {
      public void ExitFrame(){
          this.dispose();
     }
+     
+     
 // COMMANDSTART:GETROOMMEMBERLIST:SERVER:방제목:사람수:사람닉네임:사람상태메시지:사람닉네임:사람상태메시지:END
     /**
      * This method is called from within the constructor to initialize the form.
@@ -453,6 +458,8 @@ public class CallFrame extends javax.swing.JFrame {
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) throws IOException{//GEN-FIRST:event_jLabel17MouseClicked
         ClientHandler clientHandler = new ClientHandler();
+        System.out.println("LOgin NAME : " + LoginFrame.name.getText());
+        System.out.println("ClientID : " + clientHandler.user.roomUserName.get(0));
         if(LoginFrame.name.getText().equals(clientHandler.user.roomUserName.get(0))){
             new MegaphoneFrame().setVisible(true);
             clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");

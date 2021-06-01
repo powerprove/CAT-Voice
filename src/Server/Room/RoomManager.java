@@ -72,6 +72,7 @@ public class RoomManager
         for (Entry<String, Room> entry : RoomManager.rooms.entrySet()) {
             Room room = entry.getValue();
             for (Member member : room.getMembers()) {
+                    System.out.println("sendNotice" + member.getNickName());
                     member.sendVoice(Data, count);
             }
         }

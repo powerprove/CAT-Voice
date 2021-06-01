@@ -13,6 +13,7 @@ public class MemberManager
         if (members.isEmpty()) {
             member.setManageer();
             this.manager = member;
+            System.out.println("MEMBER NICKNAME : "+member.getNickName());
         }
         if (!MemberManager.members.containsKey(member.getNickName()))
             MemberManager.members.put(member.getNickName(), member);

@@ -19,6 +19,7 @@ public class User
     _roomInfo[] roomInfo = new _roomInfo[100];
     static Vector<String> roomUserName = new Vector<String>();
     static Vector<String> roomUserMSG = new Vector<String>();
+    static Queue<String> SpeakerMark = new LinkedList<>();
     int roomUserIdx = clienthandler.RoomTotalpeople;
     static Queue<String> SpeakerMark = new LinkedList<>(); ///////////
 

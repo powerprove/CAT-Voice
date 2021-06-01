@@ -180,17 +180,13 @@ public class WatingRoomFrame extends javax.swing.JFrame {
       System.out.print("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
       clientHandler.client.sendData("COMMANDSTART:GETROOMLIST:"+name.getText()+":END");
       DefaultListModel model = new DefaultListModel();
-      for(int i = 0; i <= clientHandler.user.roomcnt; i+=2){
-      System.out.println("ROOMNAME" + i + ": "+clientHandler.user.roomInfo[i].roomName );
-      if(ClientHandler.user.roomInfo[i].roomName == null){
-          continue;
-      }
-      else{
+      for(int i = 0; i < clientHandler.user.roomcnt; i++){
+      //System.out.println("ROOMNAME" + i + ": "+clientHandler.user.roomInfo[i].roomName );
+          System.out.println("continue");
            System.out.println("modelAdd : "+ClientHandler.user.roomInfo[i].roomName);
            model.addElement(ClientHandler.user.roomInfo[i].roomName);
       }
       jList1.setModel(model);
-      }
        // client1.sendData("COMMANDSTART:GETROOMLIST:NICKNAME:END");// TODO add your handling code here:
     }//GEN-LAST:event_QuitButtonMouseClicked
  
