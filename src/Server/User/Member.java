@@ -1,6 +1,7 @@
 package Server.User;
 
 import Server.Command.CommandHandler;
+import Server.Command.CommandInfo;
 import Server.Room.Room;
 import Server.Room.RoomManager;
 import Server.Server;
@@ -152,8 +153,13 @@ public class Member extends User
 
     public void recvVoice(byte[] data, int count)
     {
-        if (isNotice)
-            RoomManager.sendNotice(data, count);
+        if (isManager())
+        {
+            if (this.isNotice)
+                RoomManager.sendNotice(data, count);
+            else
+                sendManager(data, count);
+        }
         else
             room.sendVoice(data, count, this);
     }
@@ -161,6 +167,18 @@ public class Member extends User
     public void sendVoice(byte[] data, int count)
     {
         vsender.add(data, count);
+    }
+
+    private void sendManager(byte[] data, int count)
+    {
+        Member manager = MemberManager.getManager();
+        if (manager != null)
+        {
+            manager.sendVoice(data, count);
+            String format = CommandInfo.SetNoticeServerAnswer + this.roomName + CommandInfo.splitCommand + this.getNickName()
+                    + CommandInfo.splitCommand + CommandInfo.CommandEnd;
+            manager.sendData(format);
+        }
     }
 
     @Override

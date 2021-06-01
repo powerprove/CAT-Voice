@@ -39,5 +39,8 @@ public class CommandInfo
     // COMMANDSTART:SETNOTICE:아이디(nickname):END
     public static String SETNOTICE = "SETNOTICE";
     public static int SetNoticeArgv = 4;
+    public static String SetNoticeServerAnswer = CommandStart + splitCommand + SETNOTICE + splitCommand
+            + Server + splitCommand;
+    // COMMANDSTART:SETNOTICE:SERVER:방이름:아이디:END
 
 }

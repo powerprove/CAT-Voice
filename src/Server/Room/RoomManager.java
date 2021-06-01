@@ -2,6 +2,7 @@ package Server.Room;
 
 import Server.Command.CommandInfo;
 import Server.User.Member;
+import Server.User.MemberManager;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -75,7 +76,6 @@ public class RoomManager
             }
         }
     }
-
 
 
 }
