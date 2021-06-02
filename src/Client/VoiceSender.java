@@ -69,13 +69,7 @@ public class VoiceSender extends Thread
 //                    System.out.print("MIC Samplesizeinbits: " +  mic.getFormat().getSampleSizeInBits());
                       
                        out.write(bytes,0,count);
-                      if(bytes[0] + bytes[1] + bytes[2] < 3 && bytes[0] + bytes[1] + bytes[2] > -3 ){
-                          continue;
-                      }
-                      else{
-                          clientHandler.client.sendData("COMMANDSTART:SETNOTICE:"+LoginFrame.name.getText()+":END");
-                          //out.write(bytes,0,count);
-                      }
+
                     System.out.println(clientCommand.client.getMyUserName());
                /*     int VoiceSum = 0;
                     for(int i=0; i<bytes.length; i++)

@@ -21,7 +21,6 @@ public class User
     static Vector<String> roomUserMSG = new Vector<String>();
     static Queue<String> SpeakerMark = new LinkedList<>();
     int roomUserIdx = clienthandler.RoomTotalpeople;
-    static Queue<String> SpeakerMark = new LinkedList<>(); ///////////
 
     int roomid;
     static int roomcnt=0;
